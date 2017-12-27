@@ -5,6 +5,8 @@ const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
 
 const should = chai.should();
 
+/* eslint camelcase: 'off', max-lines: 'off' */
+
 describe('HipChatRoomNotification Unit Tests', function() {
   context('isBasicValid method', function() {
     let hipChatRoomNotification;
@@ -66,10 +68,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
           style: 'file',
           title: 'title',
           thumbnail: {
-            'url': 'url',
-            'url2x': 'url2x',
-            'width': '100',
-            'height': '200'
+            url: 'url',
+            url2x: 'url2x',
+            width: '100',
+            height: '200'
           }
         }
       };
@@ -89,7 +91,7 @@ describe('HipChatRoomNotification Unit Tests', function() {
           style: 'file',
           title: 'title',
           activity: {
-            'html': 'html'
+            html: 'html'
           }
         }
       };

@@ -5,6 +5,8 @@ const Validator = require('./../src/Validator');
 
 const should = chai.should();
 
+/* eslint max-lines: 'off', no-magic-numbers: 'off' */
+
 describe('Validator Unit Tests', function() {
   describe('isBasicValid method', function() {
     context('when an empty request object is provided', function() {
@@ -62,7 +64,7 @@ describe('Validator Unit Tests', function() {
 
         isValid.should.be.false;
         errors.length.should.equal(1);
-        errors[0].should.equal('object.from must be between 0 and 64 characters.')
+        errors[0].should.equal('object.from must be between 0 and 64 characters.');
       });
 
       context('when from attribute is 65 chars and message is omitted', function() {
@@ -77,7 +79,7 @@ describe('Validator Unit Tests', function() {
 
           isValid.should.be.false;
           errors.length.should.equal(2);
-          errors[0].should.equal('object.from must be between 0 and 64 characters.')
+          errors[0].should.equal('object.from must be between 0 and 64 characters.');
           errors[1].should.equal('object.message is a required property.');
         });
       });
@@ -85,8 +87,8 @@ describe('Validator Unit Tests', function() {
       context('when message_format attribute is html', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'message_format': 'html',
-            'message': 'test'
+            message_format: 'html',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -100,8 +102,8 @@ describe('Validator Unit Tests', function() {
       context('when message_format attribute is text', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'message_format': 'text',
-            'message': 'test'
+            message_format: 'text',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -115,8 +117,8 @@ describe('Validator Unit Tests', function() {
       context('when message_format attribute is blah', function() {
         it('the validator response should be false', function() {
           const requestObject = {
-            'message_format': 'blah',
-            'message': 'test'
+            message_format: 'blah',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -131,8 +133,8 @@ describe('Validator Unit Tests', function() {
       context('when color attribute is yellow', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'color': 'yellow',
-            'message': 'test'
+            color: 'yellow',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -146,8 +148,8 @@ describe('Validator Unit Tests', function() {
       context('when color attribute is green', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'color': 'green',
-            'message': 'test'
+            color: 'green',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -161,8 +163,8 @@ describe('Validator Unit Tests', function() {
       context('when color attribute is red', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'color': 'red',
-            'message': 'test'
+            color: 'red',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -176,8 +178,8 @@ describe('Validator Unit Tests', function() {
       context('when color attribute is purple', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'color': 'purple',
-            'message': 'test'
+            color: 'purple',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -191,8 +193,8 @@ describe('Validator Unit Tests', function() {
       context('when color attribute is gray', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'color': 'gray',
-            'message': 'test'
+            color: 'gray',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -206,8 +208,8 @@ describe('Validator Unit Tests', function() {
       context('when color attribute is random', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'color': 'random',
-            'message': 'test'
+            color: 'random',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -221,8 +223,8 @@ describe('Validator Unit Tests', function() {
       context('when color attribute is blah', function() {
         it('the validator response should be false', function() {
           const requestObject = {
-            'color': 'blah',
-            'message': 'test'
+            color: 'blah',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -230,15 +232,15 @@ describe('Validator Unit Tests', function() {
 
           isValid.should.be.false;
           errors.length.should.equal(1);
-          errors[0].should.equal('object.color must be one of: yellow, green, red, purple, gray, random.')
+          errors[0].should.equal('object.color must be one of: yellow, green, red, purple, gray, random.');
         });
       });
 
       context('when attach_to attribute is 1 char', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'attach_to': 'a',
-            'message': 'test'
+            attach_to: 'a',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -252,8 +254,8 @@ describe('Validator Unit Tests', function() {
       context('when attach_to attribute is 36 chars', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'attach_to': '123456789012345678901234567890123456',
-            'message': 'test'
+            attach_to: '123456789012345678901234567890123456',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -267,8 +269,8 @@ describe('Validator Unit Tests', function() {
       context('when attach_to attribute is 37 chars', function() {
         it('the validator response should be false', function() {
           const requestObject = {
-            'attach_to': '1234567890123456789012345678901234567',
-            'message': 'test'
+            attach_to: '1234567890123456789012345678901234567',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -276,15 +278,15 @@ describe('Validator Unit Tests', function() {
 
           isValid.should.be.false;
           errors.length.should.equal(1);
-          errors[0].should.equal('object.from must be between 0 and 64 characters.')
+          errors[0].should.equal('object.from must be between 0 and 64 characters.');
         });
       });
 
       context('when notify attribute is a boolean', function() {
         it('the validator response should be true', function() {
           const requestObject = {
-            'notify': true,
-            'message': 'test'
+            notify: true,
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -298,8 +300,8 @@ describe('Validator Unit Tests', function() {
       context('when notify attribute is not a boolean', function() {
         it('the validator response should be false', function() {
           const requestObject = {
-            'notify': 'true',
-            'message': 'test'
+            notify: 'true',
+            message: 'test'
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -307,7 +309,7 @@ describe('Validator Unit Tests', function() {
 
           isValid.should.be.false;
           errors.length.should.equal(1);
-          errors[0].should.equal('object.notify must be true or false.')
+          errors[0].should.equal('object.notify must be true or false.');
         });
       });
 
@@ -315,12 +317,14 @@ describe('Validator Unit Tests', function() {
         it('the validator response should be true', function() {
           let message = '';
 
+          /* eslint-disable */
           for (const count = 1; count <= 10000; count++) {
             message = message + 'a';
           }
+          /* eslint-enable */
 
           const requestObject = {
-            'message': message
+            message: message
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -335,12 +339,14 @@ describe('Validator Unit Tests', function() {
         it('the validator response should be false', function() {
           let message = '';
 
+          /* eslint-disable */
           for (const count = 1; count <= 10001; count++) {
             message = message + 'a';
           }
+          /* eslint-enable */
 
           const requestObject = {
-            'message': message
+            message: message
           };
           const validator = new Validator(requestObject);
           const isValid = validator.isBasicValid(requestObject);
@@ -569,12 +575,14 @@ describe('Validator Unit Tests', function() {
       it('the validator response should be true', function() {
         let message = '';
 
+        /* eslint-disable */
         for (const count = 1; count <= 500; count++) {
           message = message + 'a';
         }
+        /* eslint-enable */
 
         const requestObject = {
-          'message': message
+          message: message
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isCardValid(requestObject);
@@ -589,12 +597,14 @@ describe('Validator Unit Tests', function() {
       it('the validator response should be false', function() {
         let message = '';
 
+        /* eslint-disable */
         for (const count = 1; count <= 501; count++) {
           message = message + 'a';
         }
+        /* eslint-enable */
 
         const requestObject = {
-          'message': message
+          message: message
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isCardValid(requestObject);

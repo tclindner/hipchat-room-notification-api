@@ -5,6 +5,8 @@ const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
 
 const should = chai.should();
 
+/* eslint camelcase: 'off' */
+
 describe('HipChatRoomNotification Unit Tests', function() {
   describe('isBasicValid method', function() {
     let hipChatRoomNotification;

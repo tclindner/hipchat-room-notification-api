@@ -2,6 +2,9 @@
 
 const request = require('request');
 const Validator = require('./Validator');
+const SUCCESSFUL_POST = 204;
+
+/* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', class-methods: 'off' */
 
 class HipChatRoomNotification {
 
@@ -16,14 +19,18 @@ class HipChatRoomNotification {
    */
   constructor(domain, roomId, authToken) {
     this.apiUrl = `${domain}/v2/room/${roomId}/notification`;
-    this.authToken = authToken
+    this.authToken = authToken;
     this.isCard = false;
     this.defaultedRequestObj = undefined;
+
+    /* eslint disable camelcase */
     this.requestJson = {
       message_format: 'html',
       color: 'yellow',
       notify: false
     };
+    /* eslint enable camelcase */
+
     this.cardAttributes = [];
   }
 
@@ -47,7 +54,9 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   setTextMessageFormat() {
+    /* eslint disable camelcase */
     this.requestJson.message_format = 'text';
+    /* eslint enable camelcase */
   }
 
   /**
@@ -294,7 +303,7 @@ class HipChatRoomNotification {
    * Adds an attribute with icon to a card
    *
    * @param {String} label Label for the attribute of the card
-   * @param {String} value Value of the attribute of the card
+   * @param {String} description Value of the attribute of the card
    * @param {String} style AUI Integrations for now supporting only lozenges.
    *                       Valid values: lozenge-success, lozenge-error, lozenge-current, lozenge-complete, lozenge-moved, and lozenge
    * @param {String} iconUrl The url where the icon is
@@ -319,7 +328,7 @@ class HipChatRoomNotification {
    * Adds an attribute to a card
    *
    * @param {String} label Label for the attribute of the card
-   * @param {String} value Value of the attribute of the card
+   * @param {String} description Value of the attribute of the card
    * @param {String} style AUI Integrations for now supporting only lozenges.
    *                       Valid values: lozenge-success, lozenge-error, lozenge-current, lozenge-complete, lozenge-moved, and lozenge
    * @param {String} iconUrl The url where the icon is
@@ -406,7 +415,7 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   setRequestDefaults(defaults) {
-    defaultedRequestObj = request.defaults(defaults);
+    this.defaultedRequestObj = request.defaults(defaults);
   }
 
   /**
@@ -417,7 +426,7 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   clearRequestDefaults() {
-    defaultedRequestObj = undefined;
+    this.defaultedRequestObj = undefined;
   }
 
   /**
@@ -442,10 +451,10 @@ class HipChatRoomNotification {
           }
         };
 
-        var requestObj = this.defaultedRequestObj || request;
+        const requestObj = this.defaultedRequestObj || request;
 
         requestObj(requestConfig, function(error, response, body) {
-          if (!error && response.statusCode === 204) {
+          if (!error && response.statusCode === SUCCESSFUL_POST) {
             resolve('successfully posted to hipchat');
           } else {
             reject(new Error([`${error} - ${response.statusCode}`]));

@@ -1,6 +1,5 @@
 'use strict';
 
-const request = require('request');
 const noErrors = 0;
 const notFound = -1;
 
@@ -114,10 +113,7 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateMessageFormat() {
-    const validValues = [
-      'html',
-      'text'
-    ];
+    const validValues = ['html', 'text'];
 
     if (this.requestObject.hasOwnProperty('message_format')) {
       if (validValues.indexOf(this.requestObject.message_format) === notFound) {
@@ -177,7 +173,7 @@ class Validator {
   _validateNotify() {
     if (this.requestObject.hasOwnProperty('notify')) {
       if (typeof this.requestObject.notify.length !== 'boolean') {
-        this.errors.push(`object.notify must be true or false.`);
+        this.errors.push('object.notify must be true or false.');
       }
     }
   }
@@ -234,10 +230,7 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateFormat() {
-    const validValues = [
-      'compact',
-      'medium'
-    ];
+    const validValues = ['compact', 'medium'];
 
     if (this.requestObject.card.hasOwnProperty('format')) {
       if (validValues.indexOf(this.requestObject.card.format) === notFound) {
@@ -275,7 +268,7 @@ class Validator {
   _validateThumbnail() {
     if (this.requestObject.card.hasOwnProperty('thumbnail')) {
       if (!this.requestObject.card.thumbnail.hasOwnProperty('url')) {
-        this.errors.push('object.card.thumbnail.url is a required property.')
+        this.errors.push('object.card.thumbnail.url is a required property.');
       }
     }
   }
@@ -290,7 +283,7 @@ class Validator {
   _validateActivity() {
     if (this.requestObject.card.hasOwnProperty('activity')) {
       if (!this.requestObject.card.activity.hasOwnProperty('html')) {
-        this.errors.push('object.card.activity.html is a required property.')
+        this.errors.push('object.card.activity.html is a required property.');
       }
     }
   }
