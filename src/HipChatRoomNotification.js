@@ -4,7 +4,7 @@ const request = require('request');
 const Validator = require('./Validator');
 const SUCCESSFUL_POST = 204;
 
-/* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', class-methods: 'off' */
+/* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', class-methods: 'off', camelcase: 'off', max-params: 'off', no-unused-vars: 'off' */
 
 class HipChatRoomNotification {
 
@@ -23,13 +23,13 @@ class HipChatRoomNotification {
     this.isCard = false;
     this.defaultedRequestObj = undefined;
 
-    /* eslint disable camelcase */
+    /* eslint-disable camelcase */
     this.requestJson = {
       message_format: 'html',
       color: 'yellow',
       notify: false
     };
-    /* eslint enable camelcase */
+    /* eslint-enable camelcase */
 
     this.cardAttributes = [];
   }
@@ -54,9 +54,9 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   setTextMessageFormat() {
-    /* eslint disable camelcase */
+    /* eslint-disable camelcase */
     this.requestJson.message_format = 'text';
-    /* eslint enable camelcase */
+    /* eslint-enable camelcase */
   }
 
   /**

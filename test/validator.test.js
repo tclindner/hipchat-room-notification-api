@@ -5,7 +5,7 @@ const Validator = require('./../src/Validator');
 
 const should = chai.should();
 
-/* eslint max-lines: 'off', no-magic-numbers: 'off' */
+/* eslint max-lines: 'off', no-magic-numbers: 'off', camelcase: 'off' */
 
 describe('Validator Unit Tests', function() {
   describe('isBasicValid method', function() {
@@ -126,7 +126,7 @@ describe('Validator Unit Tests', function() {
 
           isValid.should.be.false;
           errors.length.should.equal(1);
-          errors[0].should.equal('object.message_format must be one of: html, text.')
+          errors[0].should.equal('object.message_format must be one of: html, text.');
         });
       });
 
