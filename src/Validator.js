@@ -65,6 +65,7 @@ class Validator {
     this._validateFrom();
     this._validateMessageFormat();
     this._validateColor();
+    this._validateAttachTo();
     this._validateNotify();
     this._validateMessage();
   }
@@ -246,8 +247,8 @@ class Validator {
   _validateTitle() {
     const maxFromLength = 500;
 
-    if (this.requestObject.hasOwnProperty('title')) {
-      if (this.requestObject.title.length > maxFromLength) {
+    if (this.requestObject.card.hasOwnProperty('title')) {
+      if (this.requestObject.card.title.length > maxFromLength) {
         this.errors.push(`object.card.title must be between 0 and ${maxFromLength} characters.`);
       }
     } else {
@@ -293,7 +294,7 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateId() {
-    if (!this.requestObject.hasOwnProperty('id')) {
+    if (!this.requestObject.card.hasOwnProperty('id')) {
       this.errors.push('object.card.id is a required property.');
     }
   }

@@ -318,7 +318,7 @@ describe('Validator Unit Tests', function() {
         let message = '';
 
         /* eslint-disable */
-        for (const count = 1; count <= 10000; count++) {
+        for (let count = 1; count <= 10000; count++) {
           message = message + 'a';
         }
         /* eslint-enable */
@@ -340,7 +340,7 @@ describe('Validator Unit Tests', function() {
         let message = '';
 
         /* eslint-disable */
-        for (const count = 1; count <= 10001; count++) {
+        for (let count = 1; count <= 10001; count++) {
           message = message + 'a';
         }
         /* eslint-enable */
@@ -575,7 +575,7 @@ describe('Validator Unit Tests', function() {
         let message = '';
 
         /* eslint-disable */
-        for (const count = 1; count <= 500; count++) {
+        for (let count = 1; count <= 500; count++) {
           message = message + 'a';
         }
         /* eslint-enable */
@@ -597,7 +597,7 @@ describe('Validator Unit Tests', function() {
         let message = '';
 
         /* eslint-disable */
-        for (const count = 1; count <= 501; count++) {
+        for (let count = 1; count <= 501; count++) {
           message = message + 'a';
         }
         /* eslint-enable */
@@ -632,7 +632,7 @@ describe('Validator Unit Tests', function() {
 
         isValid.should.be.false;
         errors.length.should.equal(1);
-        errors[0].should.equal('object.card.activity.html is a required property.');
+        errors[0].should.equal('object.card.thumbnail.html is a required property.');
       });
     });
 
