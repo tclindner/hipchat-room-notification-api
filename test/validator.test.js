@@ -70,7 +70,7 @@ describe('Validator Unit Tests', function() {
       context('when from attribute is 65 chars and message is omitted', function() {
         it('the validator response should be false', function() {
           const requestObject = {
-            from: '1234567890123456789012345678901234567890123456789012345678901234',
+            from: '12345678901234567890123456789012345678901234567890123456789012345',
             message: 'test'
           };
           const validator = new Validator(requestObject);

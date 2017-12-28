@@ -78,14 +78,11 @@ class Validator {
    */
   _valdateCardProperties() {
     this._validateStyle();
-    this._validateDescription();
     this._validateFormat();
     this._validateTitle();
     this._validateThumbnail();
     this._validateActivity();
-    this._validateAttributes();
     this._validateId();
-    this._validateIcon();
   }
 
   /**

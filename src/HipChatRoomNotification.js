@@ -360,11 +360,11 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   _addCardAttribute(attributeObj) {
-    if (this.requestJson.card.hasOwnProperty('attributes')) {
-      this.requestJson.card.attributes.push(attributeObj);
-    } else {
-      this.requestJson.card.attributes = [attributeObj];
+    if (!this.requestJson.card.hasOwnProperty('attributes')) {
+      this.requestJson.card.attributes = [];
     }
+
+    this.requestJson.card.attributes.push(attributeObj);
   }
 
   /**
@@ -376,7 +376,7 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   addCardIcon(iconUrl) {
-    this.requestJson.icon = {
+    this.requestJson.card.icon = {
       url: iconUrl
     };
   }
@@ -391,7 +391,7 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   addCardIconDetails(iconUrl, icon2xUrl) {
-    this.requestJson.icon = {
+    this.requestJson.card.icon = {
       'url': iconUrl,
       'url@2x': icon2xUrl
     };

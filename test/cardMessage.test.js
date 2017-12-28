@@ -8,7 +8,7 @@ const should = chai.should();
 /* eslint camelcase: 'off', max-lines: 'off' */
 
 describe('HipChatRoomNotification Unit Tests', function() {
-  context('isBasicValid method', function() {
+  context('Card message', function() {
     let hipChatRoomNotification;
 
     beforeEach(function() {
@@ -31,7 +31,7 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.setFrom('from');
       hipChatRoomNotification.setTextMessageFormat();
-      hipChatRoomNotification.setColor('red');
+      hipChatRoomNotification.setColor('green');
       hipChatRoomNotification.shouldNotify();
       hipChatRoomNotification.setMessage('message');
       hipChatRoomNotification.addCard('1', 'file', 'title');
@@ -229,9 +229,6 @@ describe('HipChatRoomNotification Unit Tests', function() {
         color: 'yellow',
         notify: false,
         card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
           attributes: [
             {
               label: 'label',
@@ -240,7 +237,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
                 style: 'lozenge-success'
               }
             }
-          ]
+          ],
+          id: '1',
+          style: 'file',
+          title: 'title'
         }
       };
 
@@ -255,9 +255,6 @@ describe('HipChatRoomNotification Unit Tests', function() {
         color: 'yellow',
         notify: false,
         card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
           attributes: [
             {
               label: 'label',
@@ -273,7 +270,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
                 style: 'lozenge-success'
               }
             }
-          ]
+          ],
+          id: '1',
+          style: 'file',
+          title: 'title'
         }
       };
 
@@ -371,12 +371,12 @@ describe('HipChatRoomNotification Unit Tests', function() {
         color: 'yellow',
         notify: false,
         card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
           icon: {
             url: 'iconUrl'
-          }
+          },
+          id: '1',
+          style: 'file',
+          title: 'title'
         }
       };
 
@@ -391,13 +391,13 @@ describe('HipChatRoomNotification Unit Tests', function() {
         color: 'yellow',
         notify: false,
         card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
           icon: {
             'url': 'iconUrl',
             'url@2x': 'icon2xUrl'
-          }
+          },
+          id: '1',
+          style: 'file',
+          title: 'title'
         }
       };
 

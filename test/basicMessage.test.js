@@ -8,7 +8,7 @@ const should = chai.should();
 /* eslint camelcase: 'off' */
 
 describe('HipChatRoomNotification Unit Tests', function() {
-  describe('isBasicValid method', function() {
+  describe('Basic message', function() {
     let hipChatRoomNotification;
 
     beforeEach(function() {
@@ -39,7 +39,7 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
         hipChatRoomNotification.setFrom('from');
         hipChatRoomNotification.setTextMessageFormat();
-        hipChatRoomNotification.setColor('red');
+        hipChatRoomNotification.setColor('green');
         hipChatRoomNotification.shouldNotify();
         hipChatRoomNotification.setMessage('message');
         hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
