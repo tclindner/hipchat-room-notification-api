@@ -1,6 +1,6 @@
 {
   "name": "hipchat-room-notification-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js wrapper for HipChat's v2 Send Room Notification API",
   "keywords": [
     "hipchat",
@@ -19,7 +19,7 @@
     "type": "git",
     "url": "https://github.com/tclindner/hipchat-room-notification-api.git"
   },
-  "main": "src/index.js",
+  "main": "src/HipChatRoomNotification.js",
   "scripts": {
     "eslint": "eslint . --format=node_modules/eslint-formatter-pretty",
     "lint": "npm run npmpackagejsonlint && npm run eslint",

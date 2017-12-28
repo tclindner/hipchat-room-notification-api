@@ -19,7 +19,7 @@ class HipChatRoomNotification {
    */
   constructor(domain, roomId, authToken) {
     this.apiUrl = `${domain}/v2/room/${roomId}/notification`;
-    this.authToken = authToken;
+    this.authToken = `Bearer ${authToken}`;
     this.isCard = false;
     this.defaultedRequestObj = undefined;
 
