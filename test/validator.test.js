@@ -518,6 +518,7 @@ describe('Validator Unit Tests', function() {
           message: 'a',
           card: {
             id: '1',
+            style: 'file',
             format: 'compact',
             title: 'title'
           }
@@ -537,6 +538,7 @@ describe('Validator Unit Tests', function() {
           message: 'a',
           card: {
             id: '1',
+            style: 'file',
             format: 'medium',
             title: 'title'
           }
@@ -556,6 +558,7 @@ describe('Validator Unit Tests', function() {
           message: 'a',
           card: {
             id: '1',
+            style: 'file',
             format: 'blah',
             title: 'title'
           }
@@ -572,16 +575,21 @@ describe('Validator Unit Tests', function() {
 
     context('when card title attribute is 500 chars', function() {
       it('the validator response should be true', function() {
-        let message = '';
+        let title = '';
 
         /* eslint-disable */
         for (let count = 1; count <= 500; count++) {
-          message = message + 'a';
+          title = title + 'a';
         }
         /* eslint-enable */
 
         const requestObject = {
-          message: message
+          message: 'a',
+          card: {
+            id: '1',
+            style: 'file',
+            title: title
+          }
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isCardValid(requestObject);
@@ -594,16 +602,21 @@ describe('Validator Unit Tests', function() {
 
     context('when card title attribute is 501 chars', function() {
       it('the validator response should be false', function() {
-        let message = '';
+        let title = '';
 
         /* eslint-disable */
         for (let count = 1; count <= 501; count++) {
-          message = message + 'a';
+          title = title + 'a';
         }
         /* eslint-enable */
 
         const requestObject = {
-          message: message
+          message: 'a',
+          card: {
+            id: '1',
+            style: 'file',
+            title: title
+          }
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isCardValid(requestObject);
