@@ -25,7 +25,7 @@
     "lint": "npm run npmpackagejsonlint && npm run eslint",
     "npmpackagejsonlint": "pjl-cli -c ./.npmpackagejsonlintrc.json",
     "test": "mocha test --recursive",
-    "coverage": "nyc --extension .js --check-coverage --lines 99 --branches 98 --functions 96 npm test"
+    "coverage": "nyc --extension .js --check-coverage --lines 90 --branches 75 --functions 89 npm test"
   },
   "dependencies": {
     "request": "^2.83.0"
