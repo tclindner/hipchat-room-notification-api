@@ -19,6 +19,10 @@
     "type": "git",
     "url": "https://github.com/tclindner/hipchat-room-notification-api.git"
   },
+  "files": [
+    "src",
+    "CONTRIBUTING.md"
+  ],
   "main": "src/HipChatRoomNotification.js",
   "scripts": {
     "eslint": "eslint . --format=node_modules/eslint-formatter-pretty",
