@@ -211,12 +211,14 @@ class Validator {
       'media'
     ];
 
-    if (this.requestObject.card.hasOwnProperty('style')) {
-      if (validValues.indexOf(this.requestObject.card.style) === notFound) {
-        this.errors.push(`object.card.style must be one of: ${validValues.join(', ')}.`);
+    if (this.requestObject.hasOwnProperty('card')) {
+      if (this.requestObject.card.hasOwnProperty('style')) {
+        if (validValues.indexOf(this.requestObject.card.style) === notFound) {
+          this.errors.push(`object.card.style must be one of: ${validValues.join(', ')}.`);
+        }
+      } else {
+        this.errors.push('object.card.style is a required property.');
       }
-    } else {
-      this.errors.push('object.card.style is a required property.');
     }
   }
 
@@ -230,9 +232,11 @@ class Validator {
   _validateFormat() {
     const validValues = ['compact', 'medium'];
 
-    if (this.requestObject.card.hasOwnProperty('format')) {
-      if (validValues.indexOf(this.requestObject.card.format) === notFound) {
-        this.errors.push(`object.card.format must be one of: ${validValues.join(', ')}.`);
+    if (this.requestObject.hasOwnProperty('card')) {
+      if (this.requestObject.card.hasOwnProperty('format')) {
+        if (validValues.indexOf(this.requestObject.card.format) === notFound) {
+          this.errors.push(`object.card.format must be one of: ${validValues.join(', ')}.`);
+        }
       }
     }
   }
@@ -247,12 +251,14 @@ class Validator {
   _validateTitle() {
     const maxFromLength = 500;
 
-    if (this.requestObject.card.hasOwnProperty('title')) {
-      if (this.requestObject.card.title.length > maxFromLength) {
-        this.errors.push(`object.card.title must be between 0 and ${maxFromLength} characters.`);
+    if (this.requestObject.hasOwnProperty('card')) {
+      if (this.requestObject.card.hasOwnProperty('title')) {
+        if (this.requestObject.card.title.length > maxFromLength) {
+          this.errors.push(`object.card.title must be between 0 and ${maxFromLength} characters.`);
+        }
+      } else {
+        this.errors.push('object.card.title is a required property.');
       }
-    } else {
-      this.errors.push('object.card.title is a required property.');
     }
   }
 
@@ -264,9 +270,11 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateThumbnail() {
-    if (this.requestObject.card.hasOwnProperty('thumbnail')) {
-      if (!this.requestObject.card.thumbnail.hasOwnProperty('url')) {
-        this.errors.push('object.card.thumbnail.url is a required property.');
+    if (this.requestObject.hasOwnProperty('card')) {
+      if (this.requestObject.card.hasOwnProperty('thumbnail')) {
+        if (!this.requestObject.card.thumbnail.hasOwnProperty('url')) {
+          this.errors.push('object.card.thumbnail.url is a required property.');
+        }
       }
     }
   }
@@ -279,9 +287,11 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateActivity() {
-    if (this.requestObject.card.hasOwnProperty('activity')) {
-      if (!this.requestObject.card.activity.hasOwnProperty('html')) {
-        this.errors.push('object.card.activity.html is a required property.');
+    if (this.requestObject.hasOwnProperty('card')) {
+      if (this.requestObject.card.hasOwnProperty('activity')) {
+        if (!this.requestObject.card.activity.hasOwnProperty('html')) {
+          this.errors.push('object.card.activity.html is a required property.');
+        }
       }
     }
   }
@@ -294,8 +304,10 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateId() {
-    if (!this.requestObject.card.hasOwnProperty('id')) {
-      this.errors.push('object.card.id is a required property.');
+    if (this.requestObject.hasOwnProperty('card')) {
+      if (!this.requestObject.card.hasOwnProperty('id')) {
+        this.errors.push('object.card.id is a required property.');
+      }
     }
   }
 

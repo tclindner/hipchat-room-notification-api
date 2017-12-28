@@ -632,7 +632,7 @@ describe('Validator Unit Tests', function() {
 
         isValid.should.be.false;
         errors.length.should.equal(1);
-        errors[0].should.equal('object.card.thumbnail.html is a required property.');
+        errors[0].should.equal('object.card.thumbnail.url is a required property.');
       });
     });
 
