@@ -169,7 +169,7 @@ class Validator {
    */
   _validateNotify() {
     if (this.requestObject.hasOwnProperty('notify')) {
-      if (typeof this.requestObject.notify.length !== 'boolean') {
+      if (typeof this.requestObject.notify !== 'boolean') {
         this.errors.push('object.notify must be true or false.');
       }
     }
