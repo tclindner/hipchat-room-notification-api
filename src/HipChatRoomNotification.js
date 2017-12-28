@@ -271,7 +271,7 @@ class HipChatRoomNotification {
       }
     };
 
-    this.cardAttributes.push(attribute);
+    this._addCardAttribute(attribute);
   }
 
   /**
