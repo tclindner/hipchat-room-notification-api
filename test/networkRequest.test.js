@@ -49,12 +49,14 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
   });
 
   it('invalid basic request object - failed validation', function() {
+    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
     const promise = notification.send();
 
     return promise.should.be.rejectedWith(Error);
   });
 
   it('invalid card request object - failed validation', function() {
+    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
     notification.addCard('1', 'file', 'title');
 
     const promise = notification.send();
