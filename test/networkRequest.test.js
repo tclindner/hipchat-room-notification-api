@@ -15,24 +15,23 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
   let notification;
   let server;
 
-  before(function() {
+  beforeEach(function() {
     server = sinon.fakeServer.create();
     server.autoRespond = true;
     server.respondImmediately = true;
-  });
-
-  after(function() {
-    server.restore();
-  });
-
-  beforeEach(function() {
     notification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+  });
+
+  afterEach(function() {
+    server.restore();
   });
 
   it('successful post - basic message', function() {
     notification.setMessage('test');
 
-    server.respondWith(204, {}, '');
+    const response = [204, {}, ''];
+
+    server.respondWith('POST', 'https://www.example.com/v2/room/1/notification', response);
 
     const promise = notification.send();
 
@@ -43,7 +42,9 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
     notification.setMessage('message');
     notification.addCard('1', 'file', 'title');
 
-    server.respondWith(204, {}, '');
+    const response = [204, {}, ''];
+
+    server.respondWith('POST', 'https://www.example.com/v2/room/1/notification', response);
 
     const promise = notification.send();
 
@@ -51,7 +52,9 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
   });
 
   it('bad post', function() {
-    server.respondWith(400, {}, '');
+    const response = [400, {}, ''];
+
+    server.respondWith('POST', 'https://www.example.com/v2/room/1/notification', response);
 
     const promise = notification.send();
 
