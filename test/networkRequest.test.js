@@ -17,6 +17,7 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
 
   before(function() {
     server = sinon.fakeServer.create();
+    server.respondImmediately = true;
   });
 
   after(function() {
