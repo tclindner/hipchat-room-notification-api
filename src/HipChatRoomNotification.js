@@ -453,7 +453,7 @@ class HipChatRoomNotification {
 
         const requestObj = this.defaultedRequestObj || request;
 
-        requestObj(requestConfig, function(error, response, body) {
+        requestObj.post(requestConfig, function(error, response, body) {
           if (!error && response.statusCode === SUCCESSFUL_POST) {
             resolve('successfully posted to hipchat');
           } else {

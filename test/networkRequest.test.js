@@ -4,7 +4,7 @@ const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const sinon = require('sinon');
 const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
-
+const request = require('request');
 const should = chai.should();
 
 chai.use(chaiAsPromised);
@@ -13,26 +13,15 @@ chai.use(chaiAsPromised);
 
 describe('HipChatRoomNotification Network Unit Tests', function() {
   let notification;
-  let server;
 
   beforeEach(function() {
-    server = sinon.fakeServer.create();
-    server.autoRespond = true;
-    server.respondImmediately = true;
     notification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
-  });
-
-  afterEach(function() {
-    server.restore();
   });
 
   it('successful post - basic message', function() {
     notification.setMessage('test');
 
-    const response = [204, {}, ''];
-
-    server.respondWith('POST', 'https://www.example.com/v2/room/1/notification', response);
-
+    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
     const promise = notification.send();
 
     return promise.should.eventually.equal('successfully posted to hipchat');
@@ -42,20 +31,14 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
     notification.setMessage('message');
     notification.addCard('1', 'file', 'title');
 
-    const response = [204, {}, ''];
-
-    server.respondWith('POST', 'https://www.example.com/v2/room/1/notification', response);
-
+    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
     const promise = notification.send();
 
     return promise.should.eventually.equal('successfully posted to hipchat');
   });
 
   it('bad post', function() {
-    const response = [400, {}, ''];
-
-    server.respondWith('POST', 'https://www.example.com/v2/room/1/notification', response);
-
+    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 400}, {});
     const promise = notification.send();
 
     return promise.should.eventually.be.rejected;
