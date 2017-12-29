@@ -440,7 +440,7 @@ class HipChatRoomNotification {
     return new Promise((resolve, reject) => {
       const validator = new Validator(this.requestJson);
 
-      if ((!this.isCard && validator.isBasicValid()) || (this.isCard && validator.isCardValid)) {
+      if ((!this.isCard && validator.isBasicValid()) || (this.isCard && validator.isCardValid())) {
         const requestConfig = {
           uri: this.apiUrl,
           method: 'POST',
