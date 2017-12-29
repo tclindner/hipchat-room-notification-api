@@ -30,7 +30,7 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
   it('successful post - basic message', function() {
     notification.setMessage('test');
 
-    server.respond(204, {}, '');
+    server.respondWith(204, {}, '');
 
     const promise = notification.send();
 
@@ -41,7 +41,7 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
     notification.setMessage('message');
     notification.addCard('1', 'file', 'title');
 
-    server.respond(204, {}, '');
+    server.respondWith(204, {}, '');
 
     const promise = notification.send();
 
@@ -49,7 +49,7 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
   });
 
   it('bad post', function() {
-    server.respond(400, {}, '');
+    server.respondWith(400, {}, '');
 
     const promise = notification.send();
 
@@ -59,7 +59,7 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
   it('invalid basic request object - failed validation', function() {
     const promise = notification.send();
 
-    return promise.should.eventually.equal('successfully posted to hipchat');
+    return promise.should.be.rejectedWith(Error);
   });
 
   it('invalid card request object - failed validation', function() {
@@ -67,6 +67,6 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
 
     const promise = notification.send();
 
-    return promise.should.eventually.equal('successfully posted to hipchat');
+    return promise.should.be.rejectedWith(Error);
   });
 });
