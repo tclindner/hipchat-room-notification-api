@@ -18,6 +18,10 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
     notification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
   });
 
+  afterEach(function() {
+    request.post.restore();
+  });
+
   it('successful post - basic message', function() {
     notification.setMessage('test');
 
