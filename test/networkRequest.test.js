@@ -9,7 +9,7 @@ const should = chai.should();
 
 chai.use(chaiAsPromised);
 
-/* eslint camelcase: 'off' */
+/* eslint camelcase: 'off', no-magic-numbers: 'off' */
 
 describe('HipChatRoomNotification Network Unit Tests', function() {
   let notification;
