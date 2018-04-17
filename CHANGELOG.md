@@ -11,6 +11,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
+## [0.2.0] - 2018-04-17
+
+### Fixed
+- Everything renamed
+- Tests pass
+- Code doesn't work!
+
 ## [0.1.0] - 2018-04-17
 
 ### Changed
