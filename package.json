@@ -1,29 +1,28 @@
 {
-  "name": "hipchat-room-notification-api",
-  "version": "1.0.1",
-  "description": "Node.js wrapper for HipChat's v2 Send Room Notification API",
+  "name": "mwpeterson/hangouts-chat-api",
+  "version": "0.1.0",
+  "description": "Node.js wrapper for Google's Hangouts Chat REST API",
   "keywords": [
-    "hipchat",
+    "hangouts",
+    "chat",
     "api",
     "alerts",
-    "notifications",
-    "send-room",
-    "v2"
+    "notifications"
   ],
-  "homepage": "https://github.com/tclindner/hipchat-room-notification-api",
+  "homepage": "https://github.com/mwpeterson/hangouts-chat-api",
   "bugs": {
-    "url": "https://github.com/tclindner/hipchat-room-notification-api/issues"
+    "url": "https://github.com/mwpeterson/hangouts-chat-api/issues"
   },
-  "author": "Thomas Lindner",
+  "author": "Michael Peterson",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tclindner/hipchat-room-notification-api.git"
+    "url": "https://github.com/mwpeterson/hangouts-chat-api.git"
   },
   "files": [
     "src",
     "CONTRIBUTING.md"
   ],
-  "main": "src/HipChatRoomNotification.js",
+  "main": "src/HangoutsChatNotification.js",
   "scripts": {
     "eslint": "eslint . --format=node_modules/eslint-formatter-pretty",
     "lint": "npm run npmpackagejsonlint && npm run eslint",

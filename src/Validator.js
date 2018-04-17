@@ -7,7 +7,7 @@ class Validator {
 
   /**
    * Creates an instance of Validator.
-   * @param {String} requestObject     HipChat API object
+   * @param {String} requestObject     Hangouts Chat API object
    *
    * @memberOf Validator
    */
@@ -89,7 +89,7 @@ class Validator {
   /**
    * Validate from attribute
    *
-   * HipChat's API requires the string to be between 0 and 64 characters.
+   * Hangouts Chat's API requires the string to be between 0 and 64 characters.
    *
    * @returns {Undefined} No return
    */
@@ -106,7 +106,7 @@ class Validator {
   /**
    * Validate message_format attribute
    *
-   * HipChat's API requires a value of 'html' or 'text'
+   * Hangouts Chat's API requires a value of 'html' or 'text'
    *
    * @returns {Undefined} No return
    */
@@ -123,7 +123,7 @@ class Validator {
   /**
    * Validate color attribute
    *
-   * HipChat's API requires a value of 'yellow', 'green', 'red', 'purple', 'gray', or 'random'
+   * Hangouts Chat's API requires a value of 'yellow', 'green', 'red', 'purple', 'gray', or 'random'
    *
    * @returns {Undefined} No return
    */
@@ -147,7 +147,7 @@ class Validator {
   /**
    * Validate attach_to attribute
    *
-   * HipChat's API requires the string to be between 0 and 36 characters.
+   * Hangouts Chat's API requires the string to be between 0 and 36 characters.
    *
    * @returns {Undefined} No return
    */
@@ -164,7 +164,7 @@ class Validator {
   /**
    * Validate notify attribute
    *
-   * HipChat's API requires a boolean.
+   * Hangouts Chat's API requires a boolean.
    *
    * @returns {Undefined} No return
    */
@@ -179,7 +179,7 @@ class Validator {
   /**
    * Validate message attribute
    *
-   * HipChat's API requires the string to be between 0 and 10000 characters.
+   * Hangouts Chat's API requires the string to be between 0 and 10000 characters.
    *
    * @returns {Undefined} No return
    */
@@ -198,7 +198,7 @@ class Validator {
   /**
    * Validate card.style attribute
    *
-   * HipChat's API requires a value of 'file', 'image', 'application', 'link', or 'media'
+   * Hangouts Chat's API requires a value of 'file', 'image', 'application', 'link', or 'media'
    *
    * @returns {Undefined} No return
    */
@@ -225,7 +225,7 @@ class Validator {
   /**
    * Validate card.format attribute
    *
-   * HipChat's API requires a value of 'compact' or 'medium'
+   * Hangouts Chat's API requires a value of 'compact' or 'medium'
    *
    * @returns {Undefined} No return
    */
@@ -244,7 +244,7 @@ class Validator {
   /**
    * Validate card.title attribute
    *
-   * HipChat's API requires the string to be between 0 and 500 characters.
+   * Hangouts Chat's API requires the string to be between 0 and 500 characters.
    *
    * @returns {Undefined} No return
    */
@@ -265,7 +265,7 @@ class Validator {
   /**
    * Validate card.thumbnail attribute
    *
-   * HipChat's API requires the url attribute to set if a thumbnail is provided.
+   * Hangouts Chat's API requires the url attribute to set if a thumbnail is provided.
    *
    * @returns {Undefined} No return
    */
@@ -282,7 +282,7 @@ class Validator {
   /**
    * Validate card.activity attribute
    *
-   * HipChat's API requires the html attribute to set if an activity is provided.
+   * Hangouts Chat's API requires the html attribute to set if an activity is provided.
    *
    * @returns {Undefined} No return
    */
@@ -299,7 +299,7 @@ class Validator {
   /**
    * Validate card.id attribute
    *
-   * HipChat's API requires an id attribute
+   * Hangouts Chat's API requires an id attribute
    *
    * @returns {Undefined} No return
    */

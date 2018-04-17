@@ -3,7 +3,7 @@
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 const sinon = require('sinon');
-const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
+const HangoutsChatNotification = require('./../src/HangoutsChatNotification');
 const request = require('request');
 const should = chai.should();
 
@@ -11,11 +11,11 @@ chai.use(chaiAsPromised);
 
 /* eslint camelcase: 'off', no-magic-numbers: 'off' */
 
-describe('HipChatRoomNotification Network Unit Tests', function() {
+describe('HangoutsChatNotification Network Unit Tests', function() {
   let notification;
 
   beforeEach(function() {
-    notification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+    notification = new HangoutsChatNotification('https://www.example.com', '1', 'abcd1234');
   });
 
   afterEach(function() {
@@ -28,7 +28,7 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
     const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
     const promise = notification.send();
 
-    return promise.should.eventually.equal('successfully posted to hipchat');
+    return promise.should.eventually.equal('successfully posted to hangouts-chat');
   });
 
   it('successful post - card', function() {
@@ -38,7 +38,7 @@ describe('HipChatRoomNotification Network Unit Tests', function() {
     const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
     const promise = notification.send();
 
-    return promise.should.eventually.equal('successfully posted to hipchat');
+    return promise.should.eventually.equal('successfully posted to hangouts-chat');
   });
 
   it('bad post', function() {

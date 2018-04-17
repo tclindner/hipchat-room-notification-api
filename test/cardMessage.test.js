@@ -1,18 +1,18 @@
 'use strict';
 
 const chai = require('chai');
-const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
+const HangoutsChatNotification = require('./../src/HangoutsChatNotification');
 
 const should = chai.should();
 
 /* eslint camelcase: 'off', max-lines: 'off' */
 
-describe('HipChatRoomNotification Unit Tests', function() {
+describe('HangoutsChatNotification Unit Tests', function() {
   context('Card message', function() {
-    let hipChatRoomNotification;
+    let hangoutsChatNotification;
 
     beforeEach(function() {
-      hipChatRoomNotification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+      hangoutsChatNotification = new HangoutsChatNotification('https://www.example.com', '1', 'abcd1234');
     });
 
     it('custom basic card', function() {
@@ -29,13 +29,13 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.setFrom('from');
-      hipChatRoomNotification.setTextMessageFormat();
-      hipChatRoomNotification.setColor('green');
-      hipChatRoomNotification.shouldNotify();
-      hipChatRoomNotification.setMessage('message');
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.setFrom('from');
+      hangoutsChatNotification.setTextMessageFormat();
+      hangoutsChatNotification.setColor('green');
+      hangoutsChatNotification.shouldNotify();
+      hangoutsChatNotification.setMessage('message');
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with thumbnail', function() {
@@ -53,9 +53,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardThumbnail('url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardThumbnail('url');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with thumbnail details', function() {
@@ -76,9 +76,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardThumbnailDetails('url', 'url2x', '100', '200');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardThumbnailDetails('url', 'url2x', '100', '200');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with activity', function() {
@@ -96,9 +96,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addActivity('html');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addActivity('html');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with activity with icon', function() {
@@ -119,9 +119,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addActivityWithIcon('html', 'iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addActivityWithIcon('html', 'iconUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with activity with icon details', function() {
@@ -143,9 +143,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addActivityWithIconDetails('html', 'iconUrl', 'icon2xUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addActivityWithIconDetails('html', 'iconUrl', 'icon2xUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with compact format', function() {
@@ -161,9 +161,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.setCardToCompactFormat();
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.setCardToCompactFormat();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with medium format', function() {
@@ -179,9 +179,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.setCardToMediumFormat();
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.setCardToMediumFormat();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with url', function() {
@@ -197,9 +197,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardUrl('url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardUrl('url');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with description', function() {
@@ -218,9 +218,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardDescription('description', 'html');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardDescription('description', 'html');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with 1 attribute', function() {
@@ -244,9 +244,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttribute('label', 'description', 'lozenge-success');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttribute('label', 'description', 'lozenge-success');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with 2 attributes', function() {
@@ -277,10 +277,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttribute('label', 'description', 'lozenge-success');
-      hipChatRoomNotification.addCardAttribute('label2', 'description2', 'lozenge-success');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttribute('label', 'description', 'lozenge-success');
+      hangoutsChatNotification.addCardAttribute('label2', 'description2', 'lozenge-success');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with url', function() {
@@ -305,9 +305,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttributeWithUrl('label', 'description', 'lozenge-success', 'url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttributeWithUrl('label', 'description', 'lozenge-success', 'url');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with icon', function() {
@@ -332,9 +332,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttributeWithIcon('label', 'description', 'lozenge-success', 'iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttributeWithIcon('label', 'description', 'lozenge-success', 'iconUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with icon and url', function() {
@@ -360,9 +360,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttributeWithIconAndUrl('label', 'description', 'lozenge-success', 'iconUrl', 'url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttributeWithIconAndUrl('label', 'description', 'lozenge-success', 'iconUrl', 'url');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with icon', function() {
@@ -380,9 +380,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardIcon('iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardIcon('iconUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with icon details', function() {
@@ -401,9 +401,9 @@ describe('HipChatRoomNotification Unit Tests', function() {
         }
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardIconDetails('iconUrl', 'icon2xUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardIconDetails('iconUrl', 'icon2xUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
   });
 });

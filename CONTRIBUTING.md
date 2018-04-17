@@ -11,7 +11,7 @@
 
 ### Code
 
-* Fork and clone the hipchat-room-notification-api repo
+* Fork and clone the hangouts-chat-api repo
 
 ### Install project dependencies
 
@@ -37,7 +37,7 @@ This will:
 
 ### JS
 
-hipchat-room-notification-api utilizes ESLint to enforce JavaScript standards. Please see the `.eslintrc.json` file for ESLint config.
+hangouts-chat-api utilizes ESLint to enforce JavaScript standards. Please see the `.eslintrc.json` file for ESLint config.
 
 * [eslint](https://github.com/eslint/eslint)
 
@@ -69,4 +69,4 @@ EditorConfig helps maintain consistent file formatting between different editors
 
 ## License
 
-Contributions to hipchat-room-notification-api are subject to the [MIT License](https://github.com/tclindner/hipchat-room-notification-api/blob/master/LICENSE).
+Contributions to hangouts-chat-api are subject to the [MIT License](https://github.com/mwpeterson/hangouts-chat-api/blob/master/LICENSE).

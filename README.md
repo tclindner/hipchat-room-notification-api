@@ -1,16 +1,16 @@
-# hipchat-room-notification-api
+# hangouts-chat-api
 
-> Node.js wrapper for HipChat's v2 Send Room Notification API
+> Node.js wrapper for Google's Hangouts Chat REST API
 
-[![license](https://img.shields.io/github/license/tclindner/hipchat-room-notification-api.svg?maxAge=2592000&style=flat-square)](https://github.com/tclindner/hipchat-room-notification-api/blob/master/LICENSE)
-[![npm](https://img.shields.io/npm/v/hipchat-room-notification-api.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/hipchat-room-notification-api)
-[![Travis](https://img.shields.io/travis/tclindner/hipchat-room-notification-api.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/tclindner/hipchat-room-notification-api)
-[![Dependency Status](https://david-dm.org/tclindner/hipchat-room-notification-api.svg?style=flat-square)](https://david-dm.org/tclindner/hipchat-room-notification-api)
-[![devDependency Status](https://david-dm.org/tclindner/hipchat-room-notification-api/dev-status.svg?style=flat-square)](https://david-dm.org/tclindner/hipchat-room-notification-api#info=devDependencies)
+[![license](https://img.shields.io/github/license/mwpeterson/hangouts-chat-api.svg?maxAge=2592000&style=flat-square)](https://github.com/mwpeterson/hangouts-chat-api/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/hangouts-chat-api.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/hangouts-chat-api)
+[![Travis](https://img.shields.io/travis/mwpeterson/hangouts-chat-api.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/mwpeterson/hangouts-chat-api)
+[![Dependency Status](https://david-dm.org/mwpeterson/hangouts-chat-api.svg?style=flat-square)](https://david-dm.org/mwpeterson/hangouts-chat-api)
+[![devDependency Status](https://david-dm.org/mwpeterson/hangouts-chat-api/dev-status.svg?style=flat-square)](https://david-dm.org/mwpeterson/hangouts-chat-api#info=devDependencies)
 
-## What is hipchat-room-notification-api?
+## What is hangouts-chat-api?
 
-hipchat-room-notification-api makes sending notifications to HipChat rooms easy.
+hangouts-chat-api makes sending notifications to Google Hangouts Chat rooms easy.
 
 ## How do I install it?
 
@@ -25,31 +25,31 @@ First thing first, let's make sure you have the necessary pre-requisites.
 
 ### Package
 
-* `npm install hipchat-room-notification-api`
+* `npm install hangouts-chat-api`
 
 ## API
 
-### HipChatRoomNotification(domain, roomId, authToken)
+### HangoutsChatNotification(domain, roomId, authToken)
 
-Creates an instance of HipChatRoomNotification
+Creates an instance of HangoutsChatNotification
 
 #### domain
 
 Type: `string`
 
-The domain the HipChat server is running on. Ex: https://www.example.com
+The domain the HangoutsChat server is running on. Ex: https://www.example.com
 
 #### roomId
 
 Type: `string`
 
-The room id of the HipChat room the notification should be posted to.
+The room id of the HangoutsChat room the notification should be posted to.
 
 #### authToken
 
 Type: `string`
 
-The auth token for the HipChat room the notification should be posted to.
+The auth token for the HangoutsChat room the notification should be posted to.
 
 ### .setFrom(name)
 
@@ -97,7 +97,7 @@ Converts notification to card instead of a basic message.
 
 Type: `string`
 
-An id that will help HipChat recognise the same card when it is sent multiple times.
+An id that will help HangoutsChat recognise the same card when it is sent multiple times.
 
 #### style
 
@@ -389,23 +389,23 @@ Clears any previously set default options.
 
 ### .send()
 
-POST a message to the HipChat room API
+POST a message to the HangoutsChat room API
 
-Returns a Promise. If it succeeds, a string will be returned with a value of `successfully posted to hipchat`. If it fails, an array of errors is returned.
+Returns a Promise. If it succeeds, a string will be returned with a value of `successfully posted to hangouts-chat`. If it fails, an array of errors is returned.
 
 ## Examples
 
 ### Basic Message
 
 ```javascript
-const hipChatRoomNotification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+const hangoutsChatNotification = new HangoutsChatNotification('https://www.example.com', '1', 'abcd1234');
 
-hipChatRoomNotification.setFrom('From');
-hipChatRoomNotification.setColor('green');
-hipChatRoomNotification.shouldNotify();
-hipChatRoomNotification.setMessage('My message.');
+hangoutsChatNotification.setFrom('From');
+hangoutsChatNotification.setColor('green');
+hangoutsChatNotification.shouldNotify();
+hangoutsChatNotification.setMessage('My message.');
 
-hipChatRoomNotification.send()
+hangoutsChatNotification.send()
   .then((result) => {
 
   }).catch((error) => {
@@ -416,7 +416,7 @@ hipChatRoomNotification.send()
 ### Simple Card
 
 ```javascript
-const notification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+const notification = new HangoutsChatNotification('https://www.example.com', '1', 'abcd1234');
 
 notification.setFrom('From');
 notification.setColor('green');
@@ -435,7 +435,7 @@ notification.send()
 ### Complex Card
 
 ```javascript
-const notification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+const notification = new HangoutsChatNotification('https://www.example.com', '1', 'abcd1234');
 
 notification.setFrom('From');
 notification.setColor('green');
@@ -463,4 +463,4 @@ Please see [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
-Copyright (c) 2017-2018 Thomas Lindner. Licensed under the MIT license.
+Copyright (c) 2018 Michael Peterson. Licensed under the MIT license.

@@ -1,18 +1,18 @@
 'use strict';
 
 const chai = require('chai');
-const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
+const HangoutsChatNotification = require('./../src/HangoutsChatNotification');
 
 const should = chai.should();
 
 /* eslint camelcase: 'off' */
 
-describe('HipChatRoomNotification Unit Tests', function() {
+describe('HangoutsChatNotification Unit Tests', function() {
   describe('Basic message', function() {
-    let hipChatRoomNotification;
+    let hangoutsChatNotification;
 
     beforeEach(function() {
-      hipChatRoomNotification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+      hangoutsChatNotification = new HangoutsChatNotification('https://www.example.com', '1', 'abcd1234');
     });
 
     it('validate initialization', function() {
@@ -22,7 +22,7 @@ describe('HipChatRoomNotification Unit Tests', function() {
         notify: false
       };
 
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('custom basic message', function() {
@@ -34,12 +34,12 @@ describe('HipChatRoomNotification Unit Tests', function() {
         message: 'message'
       };
 
-      hipChatRoomNotification.setFrom('from');
-      hipChatRoomNotification.setTextMessageFormat();
-      hipChatRoomNotification.setColor('green');
-      hipChatRoomNotification.shouldNotify();
-      hipChatRoomNotification.setMessage('message');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.setFrom('from');
+      hangoutsChatNotification.setTextMessageFormat();
+      hangoutsChatNotification.setColor('green');
+      hangoutsChatNotification.shouldNotify();
+      hangoutsChatNotification.setMessage('message');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
   });
 });
