@@ -6,16 +6,16 @@ const SUCCESSFUL_POST = 204;
 
 /* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', class-methods: 'off', camelcase: 'off', max-params: 'off', no-unused-vars: 'off' */
 
-class HipChatRoomNotification {
+class HangoutsChatNotification {
 
   /**
-   * Creates an instance of HipChatRoomNotification.
+   * Creates an instance of HangoutsChatNotification.
    *
-   * @param {String}  domain     Domain the HipChat room API is hosted on including the protocol. Ex: https://www.hipchat.com
-   * @param {Number}  roomId     HipChat room ID
+   * @param {String}  domain     Domain the Hangouts Chat API is hosted on including the protocol. Ex: https://www.hangouts-chat.com
+   * @param {Number}  roomId     Hangouts Chat room ID
    * @param {String}  authToken  Authentication token
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   constructor(domain, roomId, authToken) {
     this.apiUrl = `${domain}/v2/room/${roomId}/notification`;
@@ -40,7 +40,7 @@ class HipChatRoomNotification {
    * @param {String} name A label to be shown in addition to the sender's name
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   setFrom(name) {
     this.requestJson.from = name;
@@ -51,7 +51,7 @@ class HipChatRoomNotification {
    *
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   setTextMessageFormat() {
     /* eslint-disable camelcase */
@@ -67,7 +67,7 @@ class HipChatRoomNotification {
    * @param {String} color Color of the card
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   setColor(color) {
     this.requestJson.color = color;
@@ -78,7 +78,7 @@ class HipChatRoomNotification {
    *
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   shouldNotify() {
     this.requestJson.notify = true;
@@ -90,7 +90,7 @@ class HipChatRoomNotification {
    * @param {String} message The message body
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   setMessage(message) {
     this.requestJson.message = message;
@@ -99,12 +99,12 @@ class HipChatRoomNotification {
   /**
    * Adds a card to message
    *
-   * @param {String} id An id that will help HipChat recognise the same card when it is sent multiple times
+   * @param {String} id An id that will help Hangouts Chat recognise the same card when it is sent multiple times
    * @param {String} style Type of the card. Valid values are file, image, application, link, and media
    * @param {String} title The title of the card
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCard(id, style, title) {
     this.requestJson.card = {
@@ -121,7 +121,7 @@ class HipChatRoomNotification {
    * @param {String} url The thumbnail url
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardThumbnail(url) {
     this.requestJson.card.thumbnail = {
@@ -138,7 +138,7 @@ class HipChatRoomNotification {
    * @param {String} height The original height of the image
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardThumbnailDetails(url, url2x, width, height) {
     this.requestJson.card.thumbnail = {
@@ -155,7 +155,7 @@ class HipChatRoomNotification {
    * @param {String} html Html for the activity to show in one line a summary of the action that happened
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addActivity(html) {
     this.requestJson.card.activity = {
@@ -170,7 +170,7 @@ class HipChatRoomNotification {
    * @param {String} iconUrl The url where the icon is
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addActivityWithIcon(html, iconUrl) {
     this.requestJson.card.activity = {
@@ -189,7 +189,7 @@ class HipChatRoomNotification {
    * @param {String} icon2xUrl The url for the icon in retina
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addActivityWithIconDetails(html, iconUrl, icon2xUrl) {
     this.requestJson.card.activity = {
@@ -206,7 +206,7 @@ class HipChatRoomNotification {
    *
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   setCardToCompactFormat() {
     this.requestJson.card.format = 'compact';
@@ -217,7 +217,7 @@ class HipChatRoomNotification {
    *
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   setCardToMediumFormat() {
     this.requestJson.card.format = 'medium';
@@ -229,7 +229,7 @@ class HipChatRoomNotification {
    * @param {String} url URL that should open when the card is clicked
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardUrl(url) {
     this.requestJson.card.url = url;
@@ -242,7 +242,7 @@ class HipChatRoomNotification {
    * @param {String} format Description format. Valid values include: html and text
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardDescription(description, format) {
     this.requestJson.card.description = {
@@ -260,7 +260,7 @@ class HipChatRoomNotification {
    *                       Valid values: lozenge-success, lozenge-error, lozenge-current, lozenge-complete, lozenge-moved, and lozenge
    * @returns {undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardAttribute(label, description, style) {
     const attribute = {
@@ -284,7 +284,7 @@ class HipChatRoomNotification {
    * @param {String} url Url to be opened when a user clicks on the label
    * @returns {undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardAttributeWithUrl(label, description, style, url) {
     const attribute = {
@@ -309,7 +309,7 @@ class HipChatRoomNotification {
    * @param {String} iconUrl The url where the icon is
    * @returns {undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardAttributeWithIcon(label, description, style, iconUrl) {
     const attribute = {
@@ -335,7 +335,7 @@ class HipChatRoomNotification {
    * @param {String} url Url to be opened when a user clicks on the label
    * @returns {undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardAttributeWithIconAndUrl(label, description, style, iconUrl, url) {
     const attribute = {
@@ -357,7 +357,7 @@ class HipChatRoomNotification {
    * @param {Object} attributeObj Attribute object
    * @returns {undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   _addCardAttribute(attributeObj) {
     if (!this.requestJson.card.hasOwnProperty('attributes')) {
@@ -373,7 +373,7 @@ class HipChatRoomNotification {
    * @param {String} iconUrl The url where the icon is
    * @returns {undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardIcon(iconUrl) {
     this.requestJson.card.icon = {
@@ -388,7 +388,7 @@ class HipChatRoomNotification {
    * @param {String} icon2xUrl The url for the icon in retina
    * @returns {undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   addCardIconDetails(iconUrl, icon2xUrl) {
     this.requestJson.card.icon = {
@@ -412,7 +412,7 @@ class HipChatRoomNotification {
    * @param {Object} defaults - default request options, see the popular request library for options
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   setRequestDefaults(defaults) {
     this.defaultedRequestObj = request.defaults(defaults);
@@ -423,18 +423,18 @@ class HipChatRoomNotification {
    *
    * @returns {Undefined} No return
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   clearRequestDefaults() {
     this.defaultedRequestObj = undefined;
   }
 
   /**
-   * POST a message to the HipChat room API
+   * POST a message to the Hangouts Chat room API
    *
    * @returns {Promise} A Promise
    *
-   * @memberOf HipChatRoomNotification
+   * @memberOf HangoutsChatNotification
    */
   send() {
     return new Promise((resolve, reject) => {
@@ -455,7 +455,7 @@ class HipChatRoomNotification {
 
         requestObj.post(requestConfig, function(error, response, body) {
           if (!error && response.statusCode === SUCCESSFUL_POST) {
-            resolve('successfully posted to hipchat');
+            resolve('successfully posted to hangouts-chat');
           } else {
             reject(new Error([`${error} - ${response.statusCode}`]));
           }
@@ -468,4 +468,4 @@ class HipChatRoomNotification {
 
 }
 
-module.exports = HipChatRoomNotification;
+module.exports = HangoutsChatNotification;
