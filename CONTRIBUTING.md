@@ -37,7 +37,7 @@ This will:
 
 ### JS
 
-hangouts-chat-api utilizes ESLint to enforce JavaScript standards. Please see the `.eslintrc.json` file for ESLint config.
+hangouts-chat-api utilizes ESLint to enforce JavaScript standards. Please see the `.eslintrc.js` file for ESLint config.
 
 * [eslint](https://github.com/eslint/eslint)
 
