@@ -16,7 +16,7 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   constructor(webhookUrl) {
-    this.apiUrl = webhookUrl
+    this.apiUrl = webhookUrl;
 
     this.isCard = false;
     this.defaultedRequestObj = undefined;
@@ -104,21 +104,28 @@ class HangoutsChatNotification {
   /**
    * Adds a card to message
    *
-   * @param {String} id An id that will help Hangouts Chat recognise the same card when it is sent multiple times
-   * @param {String} style Type of the card. Valid values are file, image, application, link, and media
    * @param {String} title The title of the card
+   * @param {String} subtitle The subtitle of the card
    * @returns {Undefined} No return
    *
    * @memberOf HangoutsChatNotification
    */
   addCard(title, subtitle) {
     if (!this.requestJson.hasOwnProperty('cards')) {
-      this.requestJson.cards = [{header: {}, sections: []}];
+      this.requestJson.cards = [
+        {
+          header: {},
+          sections: []
+        }
+      ];
     }
+
     this.requestJson.cards[0].header.title = title;
+
     if (subtitle) {
       this.requestJson.cards[0].header.subtitle = subtitle;
     }
+
     this.isCard = true;
   }
 
@@ -126,6 +133,7 @@ class HangoutsChatNotification {
    * Adds thumbnail to card
    *
    * @param {String} url The thumbnail url
+   * @param {String} style The thumbnail style: IMAGE or AVATAR
    * @returns {Undefined} No return
    *
    * @memberOf HangoutsChatNotification
@@ -134,6 +142,7 @@ class HangoutsChatNotification {
     if (!this.requestJson.hasOwnProperty('cards')) {
       this.requestJson.cards = [{header: {}, sections: []}];
     }
+
     this.requestJson.cards[0].header.imageUrl = url;
     this.requestJson.cards[0].header.imageStyle = style;
   }
@@ -163,11 +172,13 @@ class HangoutsChatNotification {
    */
   addActivity(html) {
     this.requestJson.cards[0].sections.push({
-      widgets: [{
-        textParagraph: {
-          text: html
+      widgets: [
+        {
+          textParagraph: {
+            text: html
+          }
         }
-      }]
+      ]
     });
   }
 
@@ -182,13 +193,15 @@ class HangoutsChatNotification {
    */
   addActivityWithIcon(html, iconUrl) {
     this.requestJson.cards[0].sections.push({
-      widgets: [{
-        keyValue: {
-          content: html,
-          contentMultiline: 'true',
-          iconUrl: iconUrl
+      widgets: [
+        {
+          keyValue: {
+            content: html,
+            contentMultiline: 'true',
+            iconUrl: iconUrl
+          }
         }
-      }]
+      ]
     });
   }
 
@@ -242,16 +255,18 @@ class HangoutsChatNotification {
    */
   addCardUrl(url) {
     this.requestJson.cards[0].sections.push({
-      widgets: [{
-        keyValue: {
-          content: url,
-          onClick: {
-            openLink: {
-              url: url
+      widgets: [
+        {
+          keyValue: {
+            content: url,
+            onClick: {
+              openLink: {
+                url: url
+              }
             }
           }
         }
-      }]
+      ]
     });
   }
 
@@ -265,14 +280,14 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addCardDescription(description, format) {
-    this.addActivity(html);
+    this.addActivity(description);
   }
 
   /**
    * Adds an attribute to a card
    *
    * @param {String} label Label for the attribute of the card
-   * @param {String} description Value of the attribute of the card
+   * @param {String} content  Value of the attribute of the card
    * @param {String} style AUI Integrations for now supporting only lozenges.
    *                       Valid values: lozenge-success, lozenge-error, lozenge-current, lozenge-complete, lozenge-moved, and lozenge
    * @returns {undefined} No return
@@ -283,9 +298,10 @@ class HangoutsChatNotification {
     const attribute = {
       keyValue: {
         topLabel: label,
-        content: this._getLozengeStyle(content, style)
+        content: this.constructor._getLozengeStyle(content, style)
       }
-    }
+    };
+
     this._addCardAttribute(attribute);
   }
 
@@ -293,7 +309,7 @@ class HangoutsChatNotification {
    * Adds an attribute with url to a card
    *
    * @param {String} label Label for the attribute of the card
-   * @param {String} description Value of the attribute of the card
+   * @param {String} content Value of the attribute of the card
    * @param {String} style AUI Integrations for now supporting only lozenges.
    *                       Valid values: lozenge-success, lozenge-error, lozenge-current, lozenge-complete, lozenge-moved, and lozenge
    * @param {String} url Url to be opened when a user clicks on the label
@@ -305,14 +321,15 @@ class HangoutsChatNotification {
     const attribute = {
       keyValue: {
         topLabel: label,
-        content: this._getLozengeStyle(content, style),
+        content: this.constructor._getLozengeStyle(content, style),
         onClick: {
           openLink: {
             url: url
           }
         }
       }
-    }
+    };
+
     this._addCardAttribute(attribute);
   }
 
@@ -320,7 +337,7 @@ class HangoutsChatNotification {
    * Adds an attribute with icon to a card
    *
    * @param {String} label Label for the attribute of the card
-   * @param {String} description Value of the attribute of the card
+   * @param {String} content Value of the attribute of the card
    * @param {String} style AUI Integrations for now supporting only lozenges.
    *                       Valid values: lozenge-success, lozenge-error, lozenge-current, lozenge-complete, lozenge-moved, and lozenge
    * @param {String} iconUrl The url where the icon is
@@ -332,14 +349,16 @@ class HangoutsChatNotification {
     const attribute = {
       keyValue: {
         topLabel: label,
-        content: this._getLozengeStyle(content, style)
+        content: this.constructor._getLozengeStyle(content, style)
       }
-    }
+    };
+
     if (iconUrl.includes('//')) {
       attribute.keyValue.iconUrl = iconUrl;
     } else {
       attribute.keyValue.icon = iconUrl;
     }
+
     this._addCardAttribute(attribute);
   }
 
@@ -347,7 +366,7 @@ class HangoutsChatNotification {
    * Adds an attribute to a card
    *
    * @param {String} label Label for the attribute of the card
-   * @param {String} description Value of the attribute of the card
+   * @param {String} content Value of the attribute of the card
    * @param {String} style AUI Integrations for now supporting only lozenges.
    *                       Valid values: lozenge-success, lozenge-error, lozenge-current, lozenge-complete, lozenge-moved, and lozenge
    * @param {String} iconUrl The url where the icon is
@@ -360,19 +379,21 @@ class HangoutsChatNotification {
     const attribute = {
       keyValue: {
         topLabel: label,
-        content: this._getLozengeStyle(content, style),
+        content: this.constructor._getLozengeStyle(content, style),
         onClick: {
           openLink: {
             url: url
           }
         }
       }
-    }
+    };
+
     if (iconUrl.includes('//')) {
       attribute.keyValue.iconUrl = iconUrl;
     } else {
       attribute.keyValue.icon = iconUrl;
     }
+
     this._addCardAttribute(attribute);
   }
 
@@ -388,31 +409,42 @@ class HangoutsChatNotification {
     this.cardAttributes.push(attributeObj);
   }
 
-
-  _getLozengeStyle(content, style) {
+  /**
+   * Sets the "lozenge" style for HipChat compatability
+   *
+   * @param {string} content content to be styled
+   * @param {string} style lozenge style to apply
+   * @returns {string} styledContent content with lozenge style applied
+   *
+   * @memberOf HangoutsChatNotification
+   */
+  static _getLozengeStyle(content, style) {
     let color;
-    switch(style) {
-      case 'lozenge-current':
-        color = '#594300';
-        break;
-      case 'lozenge-error':
-        color = '#d04437';
-        break;
-      case 'lozenge-success':
-        color = '#14892c';
-        break;
-      case 'lozenge-complete':
-        color = '#4a6785';
-        break;
-      case 'lozenge-moved':
-        color = '#815b3a';
-        break;
-      default:
-        color = '#333';
+
+    switch (style) {
+    case 'lozenge-current':
+      color = '#594300';
+      break;
+    case 'lozenge-error':
+      color = '#d04437';
+      break;
+    case 'lozenge-success':
+      color = '#14892c';
+      break;
+    case 'lozenge-complete':
+      color = '#4a6785';
+      break;
+    case 'lozenge-moved':
+      color = '#815b3a';
+      break;
+    default:
+      color = '#333';
     }
-   const styledContent = `<font color="${color}">${content}</font>`
-   return styledContent;
+    const styledContent = `<font color="${color}">${content}</font>`;
+
+    return styledContent;
   }
+
   /**
    * Add icon to card
    *
@@ -486,10 +518,10 @@ class HangoutsChatNotification {
       if ((!this.isCard && validator.isBasicValid()) || (this.isCard && validator.isCardValid())) {
         if (this.cardAttributes.length) {
           this.requestJson.cards[0].sections.push({
-            widgets: [ this.cardAttributes ]
+            widgets: [this.cardAttributes]
           });
         }
-        console.log(JSON.stringify(this.requestJson));
+
         const requestConfig = {
           uri: this.apiUrl,
           method: 'POST',
