@@ -37,7 +37,8 @@ class Validator {
    * @memberOf Validator
    */
   isCardValid() {
-    this._valdateBasicProperties();
+
+    this._validateNoTextMessage();
     this._valdateCardProperties();
 
     return this.errors.length === noErrors;
@@ -67,7 +68,7 @@ class Validator {
     this._validateColor();
     this._validateAttachTo();
     this._validateNotify();
-    this._validateMessage();
+    this._validateTextMessage();
   }
 
   /**
@@ -177,21 +178,34 @@ class Validator {
   }
 
   /**
-   * Validate message attribute
+   * Validate no text message attribute
    *
    * Hangouts Chat's API requires the string to be between 0 and 10000 characters.
    *
    * @returns {Undefined} No return
    */
-  _validateMessage() {
+  _validateNoTextMessage() {
+    if (this.requestObject.hasOwnProperty('text')) {
+      this.errors.push('object.text is a prohibited property on card.');
+    }
+  }
+
+  /**
+   * Validate text message attribute
+   *
+   * Hangouts Chat's API requires the string to be between 0 and 10000 characters.
+   *
+   * @returns {Undefined} No return
+   */
+  _validateTextMessage() {
     const maxFromLength = 10000;
 
-    if (this.requestObject.hasOwnProperty('message')) {
-      if (this.requestObject.message.length > maxFromLength) {
+    if (this.requestObject.hasOwnProperty('text')) {
+      if (this.requestObject.text.length > maxFromLength) {
         this.errors.push(`object.message must be between 0 and ${maxFromLength} characters.`);
       }
     } else {
-      this.errors.push('object.message is a required property.');
+      this.errors.push('object.text is a required property.');
     }
   }
 

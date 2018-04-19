@@ -2,7 +2,7 @@
 
 const request = require('request');
 const Validator = require('./Validator');
-const SUCCESSFUL_POST = 204;
+const SUCCESSFUL_POST = 200;
 
 /* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', class-methods: 'off', camelcase: 'off', max-params: 'off', no-unused-vars: 'off' */
 
@@ -11,23 +11,18 @@ class HangoutsChatNotification {
   /**
    * Creates an instance of HangoutsChatNotification.
    *
-   * @param {String}  domain     Domain the Hangouts Chat API is hosted on including the protocol. Ex: https://www.hangouts-chat.com
-   * @param {Number}  roomId     Hangouts Chat room ID
-   * @param {String}  authToken  Authentication token
+   * @param {String}  webhookUrl     Hangouts Chat webhook URL
    *
    * @memberOf HangoutsChatNotification
    */
-  constructor(domain, roomId, authToken) {
-    this.apiUrl = `${domain}/v2/room/${roomId}/notification`;
-    this.authToken = `Bearer ${authToken}`;
+  constructor(webhookUrl) {
+    this.apiUrl = webhookUrl
+
     this.isCard = false;
     this.defaultedRequestObj = undefined;
 
     /* eslint-disable camelcase */
     this.requestJson = {
-      message_format: 'html',
-      color: 'yellow',
-      notify: false
     };
     /* eslint-enable camelcase */
 
@@ -42,9 +37,11 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
+  /*
   setFrom(name) {
     this.requestJson.from = name;
   }
+   */
 
   /**
    * Sets message_format to 'text'
@@ -53,11 +50,15 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
+  /*
   setTextMessageFormat() {
     /* eslint-disable camelcase */
+  /*
     this.requestJson.message_format = 'text';
     /* eslint-enable camelcase */
+  /*
   }
+   */
 
   /**
    * Sets color of the message
@@ -69,9 +70,11 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
+  /*
   setColor(color) {
     this.requestJson.color = color;
   }
+   */
 
   /**
    * Sets notify to true
@@ -80,9 +83,11 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
+  /*
   shouldNotify() {
     this.requestJson.notify = true;
   }
+   */
 
   /**
    * Sets message of notfication
@@ -92,8 +97,8 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  setMessage(message) {
-    this.requestJson.message = message;
+  setTextMessage(message) {
+    this.requestJson.text = message;
   }
 
   /**
@@ -106,12 +111,14 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  addCard(id, style, title) {
-    this.requestJson.card = {
-      id: id,
-      style: style,
-      title: title
-    };
+  addCard(title, subtitle) {
+    if (!this.requestJson.hasOwnProperty('cards')) {
+      this.requestJson.cards = [{header: {}, sections: []}];
+    }
+    this.requestJson.cards[0].header.title = title;
+    if (subtitle) {
+      this.requestJson.cards[0].header.subtitle = subtitle;
+    }
     this.isCard = true;
   }
 
@@ -123,10 +130,12 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  addCardThumbnail(url) {
-    this.requestJson.card.thumbnail = {
-      url: url
-    };
+  addCardThumbnail(url, style = 'IMAGE') {
+    if (!this.requestJson.hasOwnProperty('cards')) {
+      this.requestJson.cards = [{header: {}, sections: []}];
+    }
+    this.requestJson.cards[0].header.imageUrl = url;
+    this.requestJson.cards[0].header.imageStyle = style;
   }
 
   /**
@@ -141,12 +150,7 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addCardThumbnailDetails(url, url2x, width, height) {
-    this.requestJson.card.thumbnail = {
-      url: url,
-      url2x: url2x,
-      width: width,
-      height: height
-    };
+    this.addCardThumbnail(url);
   }
 
   /**
@@ -158,9 +162,13 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addActivity(html) {
-    this.requestJson.card.activity = {
-      html: html
-    };
+    this.requestJson.cards[0].sections.push({
+      widgets: [{
+        textParagraph: {
+          text: html
+        }
+      }]
+    });
   }
 
   /**
@@ -173,12 +181,15 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addActivityWithIcon(html, iconUrl) {
-    this.requestJson.card.activity = {
-      html: html,
-      icon: {
-        url: iconUrl
-      }
-    };
+    this.requestJson.cards[0].sections.push({
+      widgets: [{
+        keyValue: {
+          content: html,
+          contentMultiline: 'true',
+          iconUrl: iconUrl
+        }
+      }]
+    });
   }
 
   /**
@@ -192,13 +203,7 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addActivityWithIconDetails(html, iconUrl, icon2xUrl) {
-    this.requestJson.card.activity = {
-      html: html,
-      icon: {
-        'url': iconUrl,
-        'url@2x': icon2xUrl
-      }
-    };
+    this.addActivityWithIcon(html, iconUrl);
   }
 
   /**
@@ -208,9 +213,11 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
+  /*
   setCardToCompactFormat() {
     this.requestJson.card.format = 'compact';
   }
+   */
 
   /**
    * Sets card to medium format
@@ -219,9 +226,11 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
+  /*
   setCardToMediumFormat() {
     this.requestJson.card.format = 'medium';
   }
+   */
 
   /**
    * Sets card url
@@ -232,7 +241,18 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addCardUrl(url) {
-    this.requestJson.card.url = url;
+    this.requestJson.cards[0].sections.push({
+      widgets: [{
+        keyValue: {
+          content: url,
+          onClick: {
+            openLink: {
+              url: url
+            }
+          }
+        }
+      }]
+    });
   }
 
   /**
@@ -245,10 +265,7 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addCardDescription(description, format) {
-    this.requestJson.card.description = {
-      value: description,
-      format: format
-    };
+    this.addActivity(html);
   }
 
   /**
@@ -262,15 +279,13 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  addCardAttribute(label, description, style) {
+  addCardAttribute(label, content, style) {
     const attribute = {
-      label: label,
-      value: {
-        label: description,
-        style: style
+      keyValue: {
+        topLabel: label,
+        content: this._getLozengeStyle(content, style)
       }
-    };
-
+    }
     this._addCardAttribute(attribute);
   }
 
@@ -286,16 +301,18 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  addCardAttributeWithUrl(label, description, style, url) {
+  addCardAttributeWithUrl(label, content, style, url) {
     const attribute = {
-      label: label,
-      value: {
-        label: description,
-        style: style,
-        url: url
+      keyValue: {
+        topLabel: label,
+        content: this._getLozengeStyle(content, style),
+        onClick: {
+          openLink: {
+            url: url
+          }
+        }
       }
-    };
-
+    }
     this._addCardAttribute(attribute);
   }
 
@@ -311,16 +328,18 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  addCardAttributeWithIcon(label, description, style, iconUrl) {
+  addCardAttributeWithIcon(label, content, style, iconUrl) {
     const attribute = {
-      label: label,
-      value: {
-        label: description,
-        style: style,
-        icon: iconUrl
+      keyValue: {
+        topLabel: label,
+        content: this._getLozengeStyle(content, style)
       }
-    };
-
+    }
+    if (iconUrl.includes('//')) {
+      attribute.keyValue.iconUrl = iconUrl;
+    } else {
+      attribute.keyValue.icon = iconUrl;
+    }
     this._addCardAttribute(attribute);
   }
 
@@ -337,17 +356,23 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  addCardAttributeWithIconAndUrl(label, description, style, iconUrl, url) {
+  addCardAttributeWithIconAndUrl(label, content, style, iconUrl, url) {
     const attribute = {
-      label: label,
-      value: {
-        label: description,
-        style: style,
-        icon: iconUrl,
-        url: url
+      keyValue: {
+        topLabel: label,
+        content: this._getLozengeStyle(content, style),
+        onClick: {
+          openLink: {
+            url: url
+          }
+        }
       }
-    };
-
+    }
+    if (iconUrl.includes('//')) {
+      attribute.keyValue.iconUrl = iconUrl;
+    } else {
+      attribute.keyValue.icon = iconUrl;
+    }
     this._addCardAttribute(attribute);
   }
 
@@ -360,13 +385,34 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   _addCardAttribute(attributeObj) {
-    if (!this.requestJson.card.hasOwnProperty('attributes')) {
-      this.requestJson.card.attributes = [];
-    }
-
-    this.requestJson.card.attributes.push(attributeObj);
+    this.cardAttributes.push(attributeObj);
   }
 
+
+  _getLozengeStyle(content, style) {
+    let color;
+    switch(style) {
+      case 'lozenge-current':
+        color = '#594300';
+        break;
+      case 'lozenge-error':
+        color = '#d04437';
+        break;
+      case 'lozenge-success':
+        color = '#14892c';
+        break;
+      case 'lozenge-complete':
+        color = '#4a6785';
+        break;
+      case 'lozenge-moved':
+        color = '#815b3a';
+        break;
+      default:
+        color = '#333';
+    }
+   const styledContent = `<font color="${color}">${content}</font>`
+   return styledContent;
+  }
   /**
    * Add icon to card
    *
@@ -391,10 +437,7 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addCardIconDetails(iconUrl, icon2xUrl) {
-    this.requestJson.card.icon = {
-      'url': iconUrl,
-      'url@2x': icon2xUrl
-    };
+    this.addCardIcon(iconUrl);
   }
 
   /**
@@ -441,12 +484,17 @@ class HangoutsChatNotification {
       const validator = new Validator(this.requestJson);
 
       if ((!this.isCard && validator.isBasicValid()) || (this.isCard && validator.isCardValid())) {
+        if (this.cardAttributes.length) {
+          this.requestJson.cards[0].sections.push({
+            widgets: [ this.cardAttributes ]
+          });
+        }
+        console.log(JSON.stringify(this.requestJson));
         const requestConfig = {
           uri: this.apiUrl,
           method: 'POST',
           json: this.requestJson,
           headers: {
-            'Authorization': this.authToken,
             'Content-Type': 'application/json'
           }
         };
