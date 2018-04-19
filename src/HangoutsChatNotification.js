@@ -21,27 +21,11 @@ class HangoutsChatNotification {
     this.isCard = false;
     this.defaultedRequestObj = undefined;
 
-    /* eslint-disable camelcase */
     this.requestJson = {
     };
-    /* eslint-enable camelcase */
 
     this.cardAttributes = [];
   }
-
-  /**
-   * Sets the from name of the message
-   *
-   * @param {String} name A label to be shown in addition to the sender's name
-   * @returns {Undefined} No return
-   *
-   * @memberOf HangoutsChatNotification
-   */
-  /*
-  setFrom(name) {
-    this.requestJson.from = name;
-  }
-   */
 
   /**
    * Sets message_format to 'text'
@@ -50,15 +34,12 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  /*
   setTextMessageFormat() {
     /* eslint-disable camelcase */
-  /*
     this.requestJson.message_format = 'text';
+    this.isCard = false;
     /* eslint-enable camelcase */
-  /*
   }
-   */
 
   /**
    * Sets color of the message
@@ -83,11 +64,9 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  /*
   shouldNotify() {
     this.requestJson.notify = true;
   }
-   */
 
   /**
    * Sets message of notfication
@@ -226,11 +205,9 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  /*
   setCardToCompactFormat() {
-    this.requestJson.card.format = 'compact';
+    this.requestJson.card_format = 'compact';
   }
-   */
 
   /**
    * Sets card to medium format
@@ -239,11 +216,9 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  /*
   setCardToMediumFormat() {
-    this.requestJson.card.format = 'medium';
+    this.requestJson.card_format = 'medium';
   }
-   */
 
   /**
    * Sets card url
@@ -515,8 +490,21 @@ class HangoutsChatNotification {
     return new Promise((resolve, reject) => {
       const validator = new Validator(this.requestJson);
 
+      delete this.requestJson.card_format;
+
+      if (this.requestJson.message_format === 'text') {
+        this.isCard = false;
+        delete this.requestJson.cards;
+        delete this.requestJson.message_format;
+      }
+
+      if (this.requestJson.notify) {
+        this.requestJson.text = `<users/all>: ${this.requestJson.text}`;
+        delete this.requestJson.notify;
+      }
+
       if ((!this.isCard && validator.isBasicValid()) || (this.isCard && validator.isCardValid())) {
-        if (this.cardAttributes.length) {
+        if (this.cardAttributes.length && this.isCard) {
           this.requestJson.cards[0].sections.push({
             widgets: [this.cardAttributes]
           });

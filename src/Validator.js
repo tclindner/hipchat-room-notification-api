@@ -38,7 +38,7 @@ class Validator {
    */
   isCardValid() {
 
-    this._validateNoTextMessage();
+    // this._validateNoTextMessage();
     this._valdateCardProperties();
 
     return this.errors.length === noErrors;

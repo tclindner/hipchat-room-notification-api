@@ -138,7 +138,7 @@ module.exports = {
     'max-depth': ['error', 4],
     'max-nested-callbacks': ['error', 4],
     'max-params': ['error', 4],
-    'max-statements': ['error', 12],
+    'max-statements': ['error', 24],
     'max-statements-per-line': ['error', {max: 1}],
     'new-cap': 'error',
     'new-parens': 'error',
