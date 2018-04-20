@@ -25,7 +25,7 @@ describe('HangoutsChatNotification Network Unit Tests', function() {
   it('successful post - basic message', function() {
     notification.setMessage('test');
 
-    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
+    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 200}, {});
     const promise = notification.send();
 
     return promise.should.eventually.equal('successfully posted to hangouts-chat');
@@ -35,7 +35,7 @@ describe('HangoutsChatNotification Network Unit Tests', function() {
     notification.setMessage('message');
     notification.addCard('1', 'file', 'title');
 
-    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 204}, {});
+    const stub = sinon.stub(request, 'post').yields(null, {statusCode: 200}, {});
     const promise = notification.send();
 
     return promise.should.eventually.equal('successfully posted to hangouts-chat');

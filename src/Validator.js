@@ -202,7 +202,7 @@ class Validator {
 
     if (this.requestObject.hasOwnProperty('text')) {
       if (this.requestObject.text.length > maxFromLength) {
-        this.errors.push(`object.message must be between 0 and ${maxFromLength} characters.`);
+        this.errors.push(`object.text must be between 0 and ${maxFromLength} characters.`);
       }
     } else {
       this.errors.push('object.text is a required property.');

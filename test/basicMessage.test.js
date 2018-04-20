@@ -16,27 +16,19 @@ describe('HangoutsChatNotification Unit Tests', function() {
     });
 
     it('validate initialization', function() {
-      const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false
-      };
+      const expected = { };
 
       hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('custom basic message', function() {
       const expected = {
-        from: 'from',
+        text: 'message',
         message_format: 'text',
-        color: 'green',
-        notify: true,
-        message: 'message'
+        notify: true
       };
 
-      hangoutsChatNotification.setFrom('from');
       hangoutsChatNotification.setTextMessageFormat();
-      hangoutsChatNotification.setColor('green');
       hangoutsChatNotification.shouldNotify();
       hangoutsChatNotification.setMessage('message');
       hangoutsChatNotification._getRequestJson().should.deep.equal(expected);

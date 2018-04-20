@@ -17,21 +17,21 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('custom basic card', function() {
       const expected = {
-        from: 'from',
         message_format: 'text',
-        color: 'green',
         notify: true,
-        message: 'message',
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+        text: 'message',
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
-      hangoutsChatNotification.setFrom('from');
       hangoutsChatNotification.setTextMessageFormat();
-      hangoutsChatNotification.setColor('green');
       hangoutsChatNotification.shouldNotify();
       hangoutsChatNotification.setMessage('message');
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -40,17 +40,17 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with thumbnail', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          thumbnail: {
-            url: 'url'
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'url',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
           }
-        }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -60,20 +60,17 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with thumbnail details', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          thumbnail: {
-            url: 'url',
-            url2x: 'url2x',
-            width: '100',
-            height: '200'
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'url',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
           }
-        }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -83,17 +80,25 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with activity', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          activity: {
-            html: 'html'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    textParagraph: {
+                      text: 'html'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -103,20 +108,27 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with activity with icon', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          activity: {
-            html: 'html',
-            icon: {
-              url: 'iconUrl'
-            }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: 'html',
+                      contentMultiline: 'true',
+                      iconUrl: 'iconUrl'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -126,21 +138,27 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with activity with icon details', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          activity: {
-            html: 'html',
-            icon: {
-              'url': 'iconUrl',
-              'url@2x': 'icon2xUrl'
-            }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: 'html',
+                      contentMultiline: 'true',
+                      iconUrl: 'iconUrl'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -150,15 +168,16 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with compact format', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          format: 'compact'
-        }
+        card_format: 'compact',
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -168,15 +187,16 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with medium format', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          format: 'medium'
-        }
+        card_format: 'medium',
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -186,15 +206,30 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with url', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          url: 'url'
-        }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: 'url',
+                      onClick: {
+                        openLink: {
+                          url: 'url'
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -204,18 +239,25 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with description', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          description: {
-            value: 'description',
-            format: 'html'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    textParagraph: {
+                      text: 'description'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -225,159 +267,185 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with 1 attribute', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ],
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+            ]
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
       hangoutsChatNotification.addCardAttribute('label', 'description', 'lozenge-success');
+      hangoutsChatNotification._getCardAttributes();
       hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with 2 attributes', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success'
-              }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
             },
-            {
-              label: 'label2',
-              value: {
-                label: 'description2',
-                style: 'lozenge-success'
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      topLabel: 'label'
+                    }
+                  }, {
+                    keyValue: {
+                      content: '<font color="#14892c">description2</font>',
+                      topLabel: 'label2'
+                    }
+                  }
+                ]
               }
-            }
-          ],
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+            ]
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
       hangoutsChatNotification.addCardAttribute('label', 'description', 'lozenge-success');
       hangoutsChatNotification.addCardAttribute('label2', 'description2', 'lozenge-success');
+      hangoutsChatNotification._getCardAttributes();
       hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with url', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success',
-                url: 'url'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      onClick: {
+                        openLink: {
+                          url: 'url'
+                        }
+                      },
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
       hangoutsChatNotification.addCardAttributeWithUrl('label', 'description', 'lozenge-success', 'url');
+      hangoutsChatNotification._getCardAttributes();
       hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with icon', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success',
-                icon: 'iconUrl'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      icon: 'iconUrl',
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
       hangoutsChatNotification.addCardAttributeWithIcon('label', 'description', 'lozenge-success', 'iconUrl');
+      hangoutsChatNotification._getCardAttributes();
       hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with icon and url', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success',
-                icon: 'iconUrl',
-                url: 'url'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      icon: 'iconUrl',
+                      onClick: {
+                        openLink: {
+                          url: 'url'
+                        }
+                      },
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
       hangoutsChatNotification.addCardAttributeWithIconAndUrl('label', 'description', 'lozenge-success', 'iconUrl', 'url');
+      hangoutsChatNotification._getCardAttributes();
       hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with icon', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          icon: {
-            url: 'iconUrl'
-          },
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'iconUrl',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');
@@ -387,18 +455,17 @@ describe('HangoutsChatNotification Unit Tests', function() {
 
     it('card with icon details', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          icon: {
-            'url': 'iconUrl',
-            'url@2x': 'icon2xUrl'
-          },
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'iconUrl',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
       hangoutsChatNotification.addCard('1', 'file', 'title');

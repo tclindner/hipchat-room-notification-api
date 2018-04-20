@@ -76,7 +76,7 @@ class HangoutsChatNotification {
    *
    * @memberOf HangoutsChatNotification
    */
-  setTextMessage(message) {
+  setMessage(message) {
     this.requestJson.text = message;
   }
 
@@ -385,6 +385,19 @@ class HangoutsChatNotification {
   }
 
   /**
+   * Actually adds the attribute to a card
+   *
+   * @returns {undefined} No return
+   *
+   * @memberOf HangoutsChatNotification
+   */
+  _getCardAttributes() {
+    this.requestJson.cards[0].sections.push({
+      widgets: this.cardAttributes
+    });
+  }
+
+  /**
    * Sets the "lozenge" style for HipChat compatability
    *
    * @param {string} content content to be styled
@@ -429,9 +442,7 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addCardIcon(iconUrl) {
-    this.requestJson.card.icon = {
-      url: iconUrl
-    };
+    this.addCardThumbnail(iconUrl);
   }
 
   /**
@@ -444,7 +455,7 @@ class HangoutsChatNotification {
    * @memberOf HangoutsChatNotification
    */
   addCardIconDetails(iconUrl, icon2xUrl) {
-    this.addCardIcon(iconUrl);
+    this.addCardThumbnail(iconUrl);
   }
 
   /**
@@ -505,9 +516,7 @@ class HangoutsChatNotification {
 
       if ((!this.isCard && validator.isBasicValid()) || (this.isCard && validator.isCardValid())) {
         if (this.cardAttributes.length && this.isCard) {
-          this.requestJson.cards[0].sections.push({
-            widgets: [this.cardAttributes]
-          });
+          this._getCardAttributes();
         }
 
         const requestConfig = {
