@@ -112,12 +112,14 @@ class HangoutsChatNotification {
    * Adds thumbnail to card
    *
    * @param {String} url The thumbnail url
-   * @param {String} style The thumbnail style: IMAGE or AVATAR
+   * @param {String} styleArg The thumbnail style: IMAGE or AVATAR
    * @returns {Undefined} No return
    *
    * @memberOf HangoutsChatNotification
    */
-  addCardThumbnail(url, style = 'IMAGE') {
+  addCardThumbnail(url, styleArg) {
+    const style = styleArg || 'IMAGE';
+
     if (!this.requestJson.hasOwnProperty('cards')) {
       this.requestJson.cards = [{header: {}, sections: []}];
     }
