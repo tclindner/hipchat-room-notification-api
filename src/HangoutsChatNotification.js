@@ -46,16 +46,16 @@ class HangoutsChatNotification {
    *
    * Valid values include: yellow, green, red, purple, gray, and random.
    *
+   * UNSUPPORTED
+   *
    * @param {String} color Color of the card
    * @returns {Undefined} No return
    *
    * @memberOf HangoutsChatNotification
    */
-  /*
   setColor(color) {
-    this.requestJson.color = color;
+    this.color = color;
   }
-   */
 
   /**
    * Sets notify to true
