@@ -1,409 +1,476 @@
 'use strict';
 
 const chai = require('chai');
-const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
+const HangoutsChatNotification = require('./../src/HangoutsChatNotification');
 
 const should = chai.should();
 
 /* eslint camelcase: 'off', max-lines: 'off' */
 
-describe('HipChatRoomNotification Unit Tests', function() {
+describe('HangoutsChatNotification Unit Tests', function() {
   context('Card message', function() {
-    let hipChatRoomNotification;
+    let hangoutsChatNotification;
 
     beforeEach(function() {
-      hipChatRoomNotification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
+      hangoutsChatNotification = new HangoutsChatNotification('https://www.example.com', '1', 'abcd1234');
     });
 
     it('custom basic card', function() {
       const expected = {
-        from: 'from',
         message_format: 'text',
-        color: 'green',
         notify: true,
-        message: 'message',
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+        text: 'message',
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
-      hipChatRoomNotification.setFrom('from');
-      hipChatRoomNotification.setTextMessageFormat();
-      hipChatRoomNotification.setColor('green');
-      hipChatRoomNotification.shouldNotify();
-      hipChatRoomNotification.setMessage('message');
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.setTextMessageFormat();
+      hangoutsChatNotification.shouldNotify();
+      hangoutsChatNotification.setMessage('message');
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with thumbnail', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          thumbnail: {
-            url: 'url'
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'url',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
           }
-        }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardThumbnail('url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardThumbnail('url');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with thumbnail details', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          thumbnail: {
-            url: 'url',
-            url2x: 'url2x',
-            width: '100',
-            height: '200'
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'url',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
           }
-        }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardThumbnailDetails('url', 'url2x', '100', '200');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardThumbnailDetails('url', 'url2x', '100', '200');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with activity', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          activity: {
-            html: 'html'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    textParagraph: {
+                      text: 'html'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addActivity('html');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addActivity('html');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with activity with icon', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          activity: {
-            html: 'html',
-            icon: {
-              url: 'iconUrl'
-            }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: 'html',
+                      contentMultiline: 'true',
+                      iconUrl: 'iconUrl'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addActivityWithIcon('html', 'iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addActivityWithIcon('html', 'iconUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with activity with icon details', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          activity: {
-            html: 'html',
-            icon: {
-              'url': 'iconUrl',
-              'url@2x': 'icon2xUrl'
-            }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: 'html',
+                      contentMultiline: 'true',
+                      iconUrl: 'iconUrl'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addActivityWithIconDetails('html', 'iconUrl', 'icon2xUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addActivityWithIconDetails('html', 'iconUrl', 'icon2xUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with compact format', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          format: 'compact'
-        }
+        card_format: 'compact',
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.setCardToCompactFormat();
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.setCardToCompactFormat();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with medium format', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          format: 'medium'
-        }
+        card_format: 'medium',
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.setCardToMediumFormat();
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.setCardToMediumFormat();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with url', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          url: 'url'
-        }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: 'url',
+                      onClick: {
+                        openLink: {
+                          url: 'url'
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardUrl('url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardUrl('url');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with description', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          description: {
-            value: 'description',
-            format: 'html'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    textParagraph: {
+                      text: 'description'
+                    }
+                  }
+                ]
+              }
+            ]
           }
-        }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardDescription('description', 'html');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardDescription('description', 'html');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with 1 attribute', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ],
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+            ]
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttribute('label', 'description', 'lozenge-success');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttribute('label', 'description', 'lozenge-success');
+      hangoutsChatNotification._getCardAttributes();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with 2 attributes', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success'
-              }
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
             },
-            {
-              label: 'label2',
-              value: {
-                label: 'description2',
-                style: 'lozenge-success'
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      topLabel: 'label'
+                    }
+                  }, {
+                    keyValue: {
+                      content: '<font color="#14892c">description2</font>',
+                      topLabel: 'label2'
+                    }
+                  }
+                ]
               }
-            }
-          ],
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+            ]
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttribute('label', 'description', 'lozenge-success');
-      hipChatRoomNotification.addCardAttribute('label2', 'description2', 'lozenge-success');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttribute('label', 'description', 'lozenge-success');
+      hangoutsChatNotification.addCardAttribute('label2', 'description2', 'lozenge-success');
+      hangoutsChatNotification._getCardAttributes();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with url', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success',
-                url: 'url'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      onClick: {
+                        openLink: {
+                          url: 'url'
+                        }
+                      },
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttributeWithUrl('label', 'description', 'lozenge-success', 'url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttributeWithUrl('label', 'description', 'lozenge-success', 'url');
+      hangoutsChatNotification._getCardAttributes();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with icon', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success',
-                icon: 'iconUrl'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      icon: 'iconUrl',
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttributeWithIcon('label', 'description', 'lozenge-success', 'iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttributeWithIcon('label', 'description', 'lozenge-success', 'iconUrl');
+      hangoutsChatNotification._getCardAttributes();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with attribute with icon and url', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          id: '1',
-          style: 'file',
-          title: 'title',
-          attributes: [
-            {
-              label: 'label',
-              value: {
-                label: 'description',
-                style: 'lozenge-success',
-                icon: 'iconUrl',
-                url: 'url'
+        cards: [
+          {
+            header: {
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: [
+              {
+                widgets: [
+                  {
+                    keyValue: {
+                      content: '<font color="#14892c">description</font>',
+                      icon: 'iconUrl',
+                      onClick: {
+                        openLink: {
+                          url: 'url'
+                        }
+                      },
+                      topLabel: 'label'
+                    }
+                  }
+                ]
               }
-            }
-          ]
-        }
+            ]
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardAttributeWithIconAndUrl('label', 'description', 'lozenge-success', 'iconUrl', 'url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardAttributeWithIconAndUrl('label', 'description', 'lozenge-success', 'iconUrl', 'url');
+      hangoutsChatNotification._getCardAttributes();
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with icon', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          icon: {
-            url: 'iconUrl'
-          },
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'iconUrl',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardIcon('iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardIcon('iconUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
 
     it('card with icon details', function() {
       const expected = {
-        message_format: 'html',
-        color: 'yellow',
-        notify: false,
-        card: {
-          icon: {
-            'url': 'iconUrl',
-            'url@2x': 'icon2xUrl'
-          },
-          id: '1',
-          style: 'file',
-          title: 'title'
-        }
+        cards: [
+          {
+            header: {
+              imageStyle: 'IMAGE',
+              imageUrl: 'iconUrl',
+              subtitle: 'file',
+              title: '1'
+            },
+            sections: []
+          }
+        ]
       };
 
-      hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification.addCardIconDetails('iconUrl', 'icon2xUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      hangoutsChatNotification.addCard('1', 'file', 'title');
+      hangoutsChatNotification.addCardIconDetails('iconUrl', 'icon2xUrl');
+      hangoutsChatNotification._getRequestJson().should.deep.equal(expected);
     });
   });
 });

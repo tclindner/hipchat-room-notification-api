@@ -1,49 +1,47 @@
 {
-  "name": "hipchat-room-notification-api",
-  "version": "1.0.1",
-  "description": "Node.js wrapper for HipChat's v2 Send Room Notification API",
+  "name": "hangouts-chat-api",
+  "version": "0.4.3",
+  "description": "Node.js wrapper for Google's Hangouts Chat REST API",
   "keywords": [
-    "hipchat",
+    "hangouts",
+    "chat",
     "api",
     "alerts",
-    "notifications",
-    "send-room",
-    "v2"
+    "notifications"
   ],
-  "homepage": "https://github.com/tclindner/hipchat-room-notification-api",
+  "homepage": "https://github.com/mwpeterson/hangouts-chat-api",
   "bugs": {
-    "url": "https://github.com/tclindner/hipchat-room-notification-api/issues"
+    "url": "https://github.com/mwpeterson/hangouts-chat-api/issues"
   },
-  "author": "Thomas Lindner",
+  "author": "Michael Peterson",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tclindner/hipchat-room-notification-api.git"
+    "url": "https://github.com/mwpeterson/hangouts-chat-api.git"
   },
   "files": [
     "src",
     "CONTRIBUTING.md"
   ],
-  "main": "src/HipChatRoomNotification.js",
+  "main": "src/HangoutsChatNotification.js",
   "scripts": {
     "eslint": "eslint . --format=node_modules/eslint-formatter-pretty",
     "lint": "npm run npmpackagejsonlint && npm run eslint",
     "npmpackagejsonlint": "pjl-cli -c ./.npmpackagejsonlintrc.json",
     "test": "mocha test --recursive",
-    "coverage": "nyc --extension .js --check-coverage --lines 97 --branches 90 --functions 95 npm test"
+    "coverage": "nyc --extension .js npm test"
   },
   "dependencies": {
+    "npm": "^5.8.0",
     "request": "^2.83.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "eslint": "^4.14.0",
-    "eslint-config-tc": "^2.3.0",
     "eslint-formatter-pretty": "^1.3.0",
+    "mocha": "^5.1.1",
     "npm-package-json-lint": "^2.11.0",
-    "npm-package-json-lint-config-tc": "^1.1.0",
-    "mocha": "^4.0.1",
-    "nyc": "^11.4.1",
+    "nyc": "^11.7.1",
     "sinon": "^4.1.3"
   },
   "engines": {

@@ -11,10 +11,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Removed
 
-## [1.0.1] - 2017-12-28
+## [0.2.0] - 2018-04-17
 
 ### Fixed
-- Fix issue with format for Oauth Bearer token
+- Everything renamed
+- Tests pass
+- Code doesn't work!
 
-## [1.0.0] - 2017-12-27
-- First release. yay!
+## [0.1.0] - 2018-04-17
+
+### Changed
+- Forked from https://github.com/tclindner/hipchat-room-notification-api
