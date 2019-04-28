@@ -10,11 +10,7 @@ describe('HipChatRoomNotification Network Unit Tests', () => {
     notification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
   });
 
-  afterEach(() => {
-    request.post.mockClear();
-  });
-
-  test.todo('successful post - basic message', async () => {
+  test.skip('successful post - basic message', async () => {
     notification.setMessage('test');
 
     jest.spyOn(request, 'post');
@@ -24,7 +20,7 @@ describe('HipChatRoomNotification Network Unit Tests', () => {
     expect(result).toStrictEqual('successfully posted to hipchat');
   });
 
-  test.todo('successful post - card', async () => {
+  test.skip('successful post - card', async () => {
     notification.setMessage('message');
     notification.addCard('1', 'file', 'title');
 
@@ -35,21 +31,21 @@ describe('HipChatRoomNotification Network Unit Tests', () => {
     expect(result).toStrictEqual('successfully posted to hipchat');
   });
 
-  test.todo('bad post', async () => {
+  test.skip('bad post', async () => {
     jest.spyOn(request, 'post');
     request.post.mockReturnValue(null, {statusCode: 400}, {});
 
     await expect(notification.send()).rejects;
   });
 
-  test.todo('invalid basic request object - failed validation', async () => {
+  test.skip('invalid basic request object - failed validation', async () => {
     jest.spyOn(request, 'post');
     request.post.mockReturnValue(null, {statusCode: 204}, {});
 
     await expect(notification.send()).rejects.toThrow(Error);
   });
 
-  test.todo('invalid card request object - failed validation', async () => {
+  test.skip('invalid card request object - failed validation', async () => {
     jest.spyOn(request, 'post');
     request.post.mockReturnValue(null, {statusCode: 204}, {});
     notification.addCard('1', 'file', 'title');
