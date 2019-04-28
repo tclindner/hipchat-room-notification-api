@@ -11,7 +11,7 @@ describe('HipChatRoomNotification Network Unit Tests', () => {
   });
 
   afterEach(() => {
-    request.post.clearMock();
+    request.post.mockClear();
   });
 
   test('successful post - basic message', async () => {
