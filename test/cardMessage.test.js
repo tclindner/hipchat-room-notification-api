@@ -1,21 +1,16 @@
-'use strict';
-
-const chai = require('chai');
 const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
 
-const should = chai.should();
+/* eslint camelcase: 'off' */
 
-/* eslint camelcase: 'off', max-lines: 'off' */
-
-describe('HipChatRoomNotification Unit Tests', function() {
-  context('Card message', function() {
+describe('HipChatRoomNotification Unit Tests', () => {
+  describe('Card message', () => {
     let hipChatRoomNotification;
 
-    beforeEach(function() {
+    beforeEach(() => {
       hipChatRoomNotification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
     });
 
-    it('custom basic card', function() {
+    test('custom basic card', () => {
       const expected = {
         from: 'from',
         message_format: 'text',
@@ -35,10 +30,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
       hipChatRoomNotification.shouldNotify();
       hipChatRoomNotification.setMessage('message');
       hipChatRoomNotification.addCard('1', 'file', 'title');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with thumbnail', function() {
+    test('card with thumbnail', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -55,10 +50,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardThumbnail('url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with thumbnail details', function() {
+    test('card with thumbnail details', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -78,10 +73,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardThumbnailDetails('url', 'url2x', '100', '200');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with activity', function() {
+    test('card with activity', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -98,10 +93,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addActivity('html');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with activity with icon', function() {
+    test('card with activity with icon', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -121,10 +116,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addActivityWithIcon('html', 'iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with activity with icon details', function() {
+    test('card with activity with icon details', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -145,10 +140,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addActivityWithIconDetails('html', 'iconUrl', 'icon2xUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with compact format', function() {
+    test('card with compact format', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -163,10 +158,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.setCardToCompactFormat();
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with medium format', function() {
+    test('card with medium format', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -181,10 +176,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.setCardToMediumFormat();
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with url', function() {
+    test('card with url', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -199,10 +194,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardUrl('url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with description', function() {
+    test('card with description', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -220,10 +215,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardDescription('description', 'html');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with 1 attribute', function() {
+    test('card with 1 attribute', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -246,10 +241,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardAttribute('label', 'description', 'lozenge-success');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with 2 attributes', function() {
+    test('card with 2 attributes', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -280,10 +275,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardAttribute('label', 'description', 'lozenge-success');
       hipChatRoomNotification.addCardAttribute('label2', 'description2', 'lozenge-success');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with attribute with url', function() {
+    test('card with attribute with url', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -307,10 +302,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardAttributeWithUrl('label', 'description', 'lozenge-success', 'url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with attribute with icon', function() {
+    test('card with attribute with icon', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -334,10 +329,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardAttributeWithIcon('label', 'description', 'lozenge-success', 'iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with attribute with icon and url', function() {
+    test('card with attribute with icon and url', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -362,10 +357,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardAttributeWithIconAndUrl('label', 'description', 'lozenge-success', 'iconUrl', 'url');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with icon', function() {
+    test('card with icon', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -382,10 +377,10 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardIcon('iconUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('card with icon details', function() {
+    test('card with icon details', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
@@ -403,7 +398,7 @@ describe('HipChatRoomNotification Unit Tests', function() {
 
       hipChatRoomNotification.addCard('1', 'file', 'title');
       hipChatRoomNotification.addCardIconDetails('iconUrl', 'icon2xUrl');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
   });
 });

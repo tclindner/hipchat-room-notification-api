@@ -1,5 +1,3 @@
-'use strict';
-
 const noErrors = 0;
 const notFound = -1;
 
