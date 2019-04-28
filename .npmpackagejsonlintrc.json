@@ -2,6 +2,6 @@
   "extends": "npm-package-json-lint-config-tc",
   "rules": {
     "require-peerDependencies": "off",
-    "valid-values-engines": "warning"
+    "valid-values-engines": "off"
   }
 }
