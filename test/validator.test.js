@@ -1,29 +1,24 @@
-'use strict';
-
-const chai = require('chai');
 const Validator = require('./../src/Validator');
 
-const should = chai.should();
+/* eslint camelcase: 'off' */
 
-/* eslint max-lines: 'off', no-magic-numbers: 'off', camelcase: 'off' */
-
-describe('Validator Unit Tests', function() {
-  describe('isBasicValid method', function() {
-    context('when an empty request object is provided', function() {
-      it('the validator response should be false', function() {
+describe('Validator Unit Tests', () => {
+  describe('isBasicValid method', () => {
+    describe('when an empty request object is provided', () => {
+      test('the validator response should be false', () => {
         const requestObject = {};
         const validator = new Validator(requestObject);
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.message is a required property.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.message is a required property.');
       });
     });
 
-    context('when from attribute is 1 char', function() {
-      it('the validator response should be true', function() {
+    describe('when from attribute is 1 char', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           from: 'a',
           message: 'test'
@@ -32,13 +27,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when from attribute is 64 chars', function() {
-      it('the validator response should be true', function() {
+    describe('when from attribute is 64 chars', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           from: '1234567890123456789012345678901234567890123456789012345678901234',
           message: 'test'
@@ -47,13 +42,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when from attribute is 65 chars', function() {
-      it('the validator response should be false', function() {
+    describe('when from attribute is 65 chars', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           from: '12345678901234567890123456789012345678901234567890123456789012345',
           message: 'test'
@@ -62,14 +57,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.from must be between 0 and 64 characters.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.from must be between 0 and 64 characters.');
       });
     });
 
-    context('when from attribute is 65 chars and message is omitted', function() {
-      it('the validator response should be false', function() {
+    describe('when from attribute is 65 chars and message is omitted', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           from: '12345678901234567890123456789012345678901234567890123456789012345'
         };
@@ -77,15 +72,15 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(2);
-        errors[0].should.equal('object.from must be between 0 and 64 characters.');
-        errors[1].should.equal('object.message is a required property.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(2);
+        expect(errors[0]).toStrictEqual('object.from must be between 0 and 64 characters.');
+        expect(errors[1]).toStrictEqual('object.message is a required property.');
       });
     });
 
-    context('when message_format attribute is html', function() {
-      it('the validator response should be true', function() {
+    describe('when message_format attribute is html', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message_format: 'html',
           message: 'test'
@@ -94,13 +89,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when message_format attribute is text', function() {
-      it('the validator response should be true', function() {
+    describe('when message_format attribute is text', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message_format: 'text',
           message: 'test'
@@ -109,13 +104,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when message_format attribute is blah', function() {
-      it('the validator response should be false', function() {
+    describe('when message_format attribute is blah', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           message_format: 'blah',
           message: 'test'
@@ -124,14 +119,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.message_format must be one of: html, text.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.message_format must be one of: html, text.');
       });
     });
 
-    context('when color attribute is yellow', function() {
-      it('the validator response should be true', function() {
+    describe('when color attribute is yellow', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           color: 'yellow',
           message: 'test'
@@ -140,13 +135,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when color attribute is green', function() {
-      it('the validator response should be true', function() {
+    describe('when color attribute is green', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           color: 'green',
           message: 'test'
@@ -155,13 +150,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when color attribute is red', function() {
-      it('the validator response should be true', function() {
+    describe('when color attribute is red', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           color: 'red',
           message: 'test'
@@ -170,13 +165,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when color attribute is purple', function() {
-      it('the validator response should be true', function() {
+    describe('when color attribute is purple', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           color: 'purple',
           message: 'test'
@@ -185,13 +180,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when color attribute is gray', function() {
-      it('the validator response should be true', function() {
+    describe('when color attribute is gray', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           color: 'gray',
           message: 'test'
@@ -200,13 +195,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when color attribute is random', function() {
-      it('the validator response should be true', function() {
+    describe('when color attribute is random', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           color: 'random',
           message: 'test'
@@ -215,13 +210,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when color attribute is blah', function() {
-      it('the validator response should be false', function() {
+    describe('when color attribute is blah', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           color: 'blah',
           message: 'test'
@@ -230,14 +225,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.color must be one of: yellow, green, red, purple, gray, random.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.color must be one of: yellow, green, red, purple, gray, random.');
       });
     });
 
-    context('when attach_to attribute is 1 char', function() {
-      it('the validator response should be true', function() {
+    describe('when attach_to attribute is 1 char', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           attach_to: 'a',
           message: 'test'
@@ -246,13 +241,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when attach_to attribute is 36 chars', function() {
-      it('the validator response should be true', function() {
+    describe('when attach_to attribute is 36 chars', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           attach_to: '123456789012345678901234567890123456',
           message: 'test'
@@ -261,13 +256,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when attach_to attribute is 37 chars', function() {
-      it('the validator response should be false', function() {
+    describe('when attach_to attribute is 37 chars', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           attach_to: '1234567890123456789012345678901234567',
           message: 'test'
@@ -276,14 +271,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.attach_to must be between 0 and 36 characters.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.attach_to must be between 0 and 36 characters.');
       });
     });
 
-    context('when notify attribute is a boolean', function() {
-      it('the validator response should be true', function() {
+    describe('when notify attribute is a boolean', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           notify: true,
           message: 'test'
@@ -292,13 +287,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when notify attribute is not a boolean', function() {
-      it('the validator response should be false', function() {
+    describe('when notify attribute is not a boolean', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           notify: 'true',
           message: 'test'
@@ -307,14 +302,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.notify must be true or false.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.notify must be true or false.');
       });
     });
 
-    context('when message attribute is 10000 chars', function() {
-      it('the validator response should be true', function() {
+    describe('when message attribute is 10000 chars', () => {
+      test('the validator response should be true', () => {
         let message = '';
 
         /* eslint-disable */
@@ -324,19 +319,19 @@ describe('Validator Unit Tests', function() {
         /* eslint-enable */
 
         const requestObject = {
-          message: message
+          message
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when message attribute is 10001 chars', function() {
-      it('the validator response should be false', function() {
+    describe('when message attribute is 10001 chars', () => {
+      test('the validator response should be false', () => {
         let message = '';
 
         /* eslint-disable */
@@ -346,22 +341,22 @@ describe('Validator Unit Tests', function() {
         /* eslint-enable */
 
         const requestObject = {
-          message: message
+          message
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.message must be between 0 and 10000 characters.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.message must be between 0 and 10000 characters.');
       });
     });
   });
 
-  describe('isCardValid method', function() {
-    context('when required card attributes are provided in the request object', function() {
-      it('the validator response should be true', function() {
+  describe('isCardValid method', () => {
+    describe('when required card attributes are provided in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -374,13 +369,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when required card attributes are not provided in the request object', function() {
-      it('the validator response should be false', function() {
+    describe('when required card attributes are not provided in the request object', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           message: 'a',
           card: {}
@@ -389,16 +384,16 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(3);
-        errors[0].should.equal('object.card.style is a required property.');
-        errors[1].should.equal('object.card.title is a required property.');
-        errors[2].should.equal('object.card.id is a required property.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(3);
+        expect(errors[0]).toStrictEqual('object.card.style is a required property.');
+        expect(errors[1]).toStrictEqual('object.card.title is a required property.');
+        expect(errors[2]).toStrictEqual('object.card.id is a required property.');
       });
     });
 
-    context('when card style is file in the request object', function() {
-      it('the validator response should be true', function() {
+    describe('when card style is file in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -411,13 +406,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card style is image in the request object', function() {
-      it('the validator response should be true', function() {
+    describe('when card style is image in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -430,13 +425,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card style is application in the request object', function() {
-      it('the validator response should be true', function() {
+    describe('when card style is application in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -449,13 +444,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card style is link in the request object', function() {
-      it('the validator response should be true', function() {
+    describe('when card style is link in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -468,13 +463,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card style is media in the request object', function() {
-      it('the validator response should be true', function() {
+    describe('when card style is media in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -487,13 +482,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card style is blah in the request object', function() {
-      it('the validator response should be false', function() {
+    describe('when card style is blah in the request object', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -506,14 +501,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.card.style must be one of: file, image, application, link, media.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.card.style must be one of: file, image, application, link, media.');
       });
     });
 
-    context('when card format is compact in the request object', function() {
-      it('the validator response should be true', function() {
+    describe('when card format is compact in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -527,13 +522,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card format is medium in the request object', function() {
-      it('the validator response should be true', function() {
+    describe('when card format is medium in the request object', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -547,13 +542,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card format is blah in the request object', function() {
-      it('the validator response should be false', function() {
+    describe('when card format is blah in the request object', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -567,14 +562,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.card.format must be one of: compact, medium.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.card.format must be one of: compact, medium.');
       });
     });
 
-    context('when card title attribute is 500 chars', function() {
-      it('the validator response should be true', function() {
+    describe('when card title attribute is 500 chars', () => {
+      test('the validator response should be true', () => {
         let title = '';
 
         /* eslint-disable */
@@ -588,20 +583,20 @@ describe('Validator Unit Tests', function() {
           card: {
             id: '1',
             style: 'file',
-            title: title
+            title
           }
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card title attribute is 501 chars', function() {
-      it('the validator response should be false', function() {
+    describe('when card title attribute is 501 chars', () => {
+      test('the validator response should be false', () => {
         let title = '';
 
         /* eslint-disable */
@@ -615,21 +610,21 @@ describe('Validator Unit Tests', function() {
           card: {
             id: '1',
             style: 'file',
-            title: title
+            title
           }
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.card.title must be between 0 and 500 characters.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.card.title must be between 0 and 500 characters.');
       });
     });
 
-    context('when card thumbnail is provided in the request object with url node', function() {
-      it('the validator response should be false', function() {
+    describe('when card thumbnail is provided in the request object with url node', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -643,14 +638,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.card.thumbnail.url is a required property.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.card.thumbnail.url is a required property.');
       });
     });
 
-    context('when card thumbnail is provided in the request object with url node', function() {
-      it('the validator response should be true', function() {
+    describe('when card thumbnail is provided in the request object with url node', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -666,13 +661,13 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
 
-    context('when card activity is provided in the request object with html node', function() {
-      it('the validator response should be false', function() {
+    describe('when card activity is provided in the request object with html node', () => {
+      test('the validator response should be false', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -686,14 +681,14 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.false;
-        errors.length.should.equal(1);
-        errors[0].should.equal('object.card.activity.html is a required property.');
+        expect(isValid).toBeFalsy();
+        expect(errors.length).toStrictEqual(1);
+        expect(errors[0]).toStrictEqual('object.card.activity.html is a required property.');
       });
     });
 
-    context('when card activity is provided in the request object with html node', function() {
-      it('the validator response should be true', function() {
+    describe('when card activity is provided in the request object with html node', () => {
+      test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
           card: {
@@ -709,8 +704,8 @@ describe('Validator Unit Tests', function() {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        isValid.should.be.true;
-        errors.length.should.equal(0);
+        expect(isValid).toBeTruthy();
+        expect(errors.length).toStrictEqual(0);
       });
     });
   });

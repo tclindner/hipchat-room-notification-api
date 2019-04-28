@@ -4,7 +4,7 @@
 
 [![license](https://img.shields.io/github/license/tclindner/hipchat-room-notification-api.svg?maxAge=2592000&style=flat-square)](https://github.com/tclindner/hipchat-room-notification-api/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/hipchat-room-notification-api.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/hipchat-room-notification-api)
-[![Travis](https://img.shields.io/travis/tclindner/hipchat-room-notification-api.svg?maxAge=2592000?style=flat-square)](https://travis-ci.org/tclindner/hipchat-room-notification-api)
+[![CircleCI](https://circleci.com/gh/tclindner/hipchat-room-notification-api.svg?style=svg&circle-token=84359b572224713bf3ad7aeff27bece303339ad6)](https://circleci.com/gh/tclindner/hipchat-room-notification-api)
 [![Dependency Status](https://david-dm.org/tclindner/hipchat-room-notification-api.svg?style=flat-square)](https://david-dm.org/tclindner/hipchat-room-notification-api)
 [![devDependency Status](https://david-dm.org/tclindner/hipchat-room-notification-api/dev-status.svg?style=flat-square)](https://david-dm.org/tclindner/hipchat-room-notification-api#info=devDependencies)
 
@@ -20,8 +20,8 @@ First thing first, let's make sure you have the necessary pre-requisites.
 
 #### Node
 
-* [Node.js](https://nodejs.org/) - v6.0.0+
-* [npm](http://npmjs.com) - v3.0.0+
+* [Node.js](https://nodejs.org/) - v8.0.0+
+* [npm](http://npmjs.com) - v5.0.0+
 
 ### Package
 

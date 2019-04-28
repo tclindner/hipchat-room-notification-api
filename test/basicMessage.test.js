@@ -1,31 +1,26 @@
-'use strict';
-
-const chai = require('chai');
 const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
-
-const should = chai.should();
 
 /* eslint camelcase: 'off' */
 
-describe('HipChatRoomNotification Unit Tests', function() {
-  describe('Basic message', function() {
+describe('HipChatRoomNotification Unit Tests', () => {
+  describe('Basic message', () => {
     let hipChatRoomNotification;
 
-    beforeEach(function() {
+    beforeEach(() => {
       hipChatRoomNotification = new HipChatRoomNotification('https://www.example.com', '1', 'abcd1234');
     });
 
-    it('validate initialization', function() {
+    test('validate initialization', () => {
       const expected = {
         message_format: 'html',
         color: 'yellow',
         notify: false
       };
 
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
 
-    it('custom basic message', function() {
+    test('custom basic message', () => {
       const expected = {
         from: 'from',
         message_format: 'text',
@@ -39,7 +34,7 @@ describe('HipChatRoomNotification Unit Tests', function() {
       hipChatRoomNotification.setColor('green');
       hipChatRoomNotification.shouldNotify();
       hipChatRoomNotification.setMessage('message');
-      hipChatRoomNotification._getRequestJson().should.deep.equal(expected);
+      expect(hipChatRoomNotification._getRequestJson()).toStrictEqual(expected);
     });
   });
 });
