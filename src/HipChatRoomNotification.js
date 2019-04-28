@@ -1,11 +1,11 @@
 const request = require('request');
 const Validator = require('./Validator');
+
 const SUCCESSFUL_POST = 204;
 
 /* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', class-methods: 'off', camelcase: 'off', max-params: 'off', no-unused-vars: 'off' */
 
 class HipChatRoomNotification {
-
   /**
    * Creates an instance of HipChatRoomNotification.
    *
@@ -191,7 +191,7 @@ class HipChatRoomNotification {
    */
   addActivityWithIconDetails(html, iconUrl, icon2xUrl) {
     this.requestJson.card.activity = {
-      html: html,
+      html,
       icon: {
         url: iconUrl,
         'url@2x': icon2xUrl
