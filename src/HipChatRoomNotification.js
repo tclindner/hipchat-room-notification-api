@@ -106,9 +106,9 @@ class HipChatRoomNotification {
    */
   addCard(id, style, title) {
     this.requestJson.card = {
-      id: id,
-      style: style,
-      title: title
+      id,
+      style,
+      title
     };
     this.isCard = true;
   }
@@ -123,7 +123,7 @@ class HipChatRoomNotification {
    */
   addCardThumbnail(url) {
     this.requestJson.card.thumbnail = {
-      url: url
+      url
     };
   }
 
@@ -140,10 +140,10 @@ class HipChatRoomNotification {
    */
   addCardThumbnailDetails(url, url2x, width, height) {
     this.requestJson.card.thumbnail = {
-      url: url,
-      url2x: url2x,
-      width: width,
-      height: height
+      url,
+      url2x,
+      width,
+      height
     };
   }
 
@@ -157,7 +157,7 @@ class HipChatRoomNotification {
    */
   addActivity(html) {
     this.requestJson.card.activity = {
-      html: html
+      html
     };
   }
 
@@ -172,7 +172,7 @@ class HipChatRoomNotification {
    */
   addActivityWithIcon(html, iconUrl) {
     this.requestJson.card.activity = {
-      html: html,
+      html,
       icon: {
         url: iconUrl
       }
@@ -193,7 +193,7 @@ class HipChatRoomNotification {
     this.requestJson.card.activity = {
       html: html,
       icon: {
-        'url': iconUrl,
+        url: iconUrl,
         'url@2x': icon2xUrl
       }
     };
@@ -245,7 +245,7 @@ class HipChatRoomNotification {
   addCardDescription(description, format) {
     this.requestJson.card.description = {
       value: description,
-      format: format
+      format
     };
   }
 
@@ -262,10 +262,10 @@ class HipChatRoomNotification {
    */
   addCardAttribute(label, description, style) {
     const attribute = {
-      label: label,
+      label,
       value: {
         label: description,
-        style: style
+        style
       }
     };
 
@@ -286,11 +286,11 @@ class HipChatRoomNotification {
    */
   addCardAttributeWithUrl(label, description, style, url) {
     const attribute = {
-      label: label,
+      label,
       value: {
         label: description,
-        style: style,
-        url: url
+        style,
+        url
       }
     };
 
@@ -311,10 +311,10 @@ class HipChatRoomNotification {
    */
   addCardAttributeWithIcon(label, description, style, iconUrl) {
     const attribute = {
-      label: label,
+      label,
       value: {
         label: description,
-        style: style,
+        style,
         icon: iconUrl
       }
     };
@@ -337,12 +337,12 @@ class HipChatRoomNotification {
    */
   addCardAttributeWithIconAndUrl(label, description, style, iconUrl, url) {
     const attribute = {
-      label: label,
+      label,
       value: {
         label: description,
-        style: style,
+        style,
         icon: iconUrl,
-        url: url
+        url
       }
     };
 
@@ -390,7 +390,7 @@ class HipChatRoomNotification {
    */
   addCardIconDetails(iconUrl, icon2xUrl) {
     this.requestJson.card.icon = {
-      'url': iconUrl,
+      url: iconUrl,
       'url@2x': icon2xUrl
     };
   }
@@ -444,7 +444,7 @@ class HipChatRoomNotification {
           method: 'POST',
           json: this.requestJson,
           headers: {
-            'Authorization': this.authToken,
+            Authorization: this.authToken,
             'Content-Type': 'application/json'
           }
         };
@@ -463,7 +463,6 @@ class HipChatRoomNotification {
       }
     });
   }
-
 }
 
 module.exports = HipChatRoomNotification;

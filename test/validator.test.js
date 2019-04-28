@@ -319,7 +319,7 @@ describe('Validator Unit Tests', () => {
         /* eslint-enable */
 
         const requestObject = {
-          message: message
+          message
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isBasicValid(requestObject);
@@ -341,7 +341,7 @@ describe('Validator Unit Tests', () => {
         /* eslint-enable */
 
         const requestObject = {
-          message: message
+          message
         };
         const validator = new Validator(requestObject);
         const isValid = validator.isBasicValid(requestObject);
@@ -583,7 +583,7 @@ describe('Validator Unit Tests', () => {
           card: {
             id: '1',
             style: 'file',
-            title: title
+            title
           }
         };
         const validator = new Validator(requestObject);
@@ -610,7 +610,7 @@ describe('Validator Unit Tests', () => {
           card: {
             id: '1',
             style: 'file',
-            title: title
+            title
           }
         };
         const validator = new Validator(requestObject);

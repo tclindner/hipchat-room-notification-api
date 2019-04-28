@@ -1,5 +1,5 @@
-const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
 const request = require('request');
+const HipChatRoomNotification = require('./../src/HipChatRoomNotification');
 
 /* eslint camelcase: 'off' */
 
@@ -39,7 +39,7 @@ describe('HipChatRoomNotification Network Unit Tests', () => {
     jest.spyOn(request, 'post');
     request.post.mockReturnValue(null, {statusCode: 400}, {});
 
-    await expect(notification.send()).rejects
+    await expect(notification.send()).rejects;
   });
 
   test('invalid basic request object - failed validation', async () => {

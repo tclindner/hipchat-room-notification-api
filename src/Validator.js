@@ -2,7 +2,6 @@ const noErrors = 0;
 const notFound = -1;
 
 class Validator {
-
   /**
    * Creates an instance of Validator.
    * @param {String} requestObject     HipChat API object
@@ -126,14 +125,7 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateColor() {
-    const validValues = [
-      'yellow',
-      'green',
-      'red',
-      'purple',
-      'gray',
-      'random'
-    ];
+    const validValues = ['yellow', 'green', 'red', 'purple', 'gray', 'random'];
 
     if (this.requestObject.hasOwnProperty('color')) {
       if (validValues.indexOf(this.requestObject.color) === notFound) {
@@ -201,13 +193,7 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateStyle() {
-    const validValues = [
-      'file',
-      'image',
-      'application',
-      'link',
-      'media'
-    ];
+    const validValues = ['file', 'image', 'application', 'link', 'media'];
 
     if (this.requestObject.hasOwnProperty('card')) {
       if (this.requestObject.card.hasOwnProperty('style')) {
@@ -308,8 +294,6 @@ class Validator {
       }
     }
   }
-
-
 }
 
 module.exports = Validator;

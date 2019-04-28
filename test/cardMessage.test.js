@@ -131,7 +131,7 @@ describe('HipChatRoomNotification Unit Tests', () => {
           activity: {
             html: 'html',
             icon: {
-              'url': 'iconUrl',
+              url: 'iconUrl',
               'url@2x': 'icon2xUrl'
             }
           }
@@ -387,7 +387,7 @@ describe('HipChatRoomNotification Unit Tests', () => {
         notify: false,
         card: {
           icon: {
-            'url': 'iconUrl',
+            url: 'iconUrl',
             'url@2x': 'icon2xUrl'
           },
           id: '1',
