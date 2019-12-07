@@ -3,7 +3,7 @@ const Validator = require('./Validator');
 
 const SUCCESSFUL_POST = 204;
 
-/* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', class-methods: 'off', camelcase: 'off', max-params: 'off', no-unused-vars: 'off' */
+/* eslint no-undefined: 'off', object-curly-newline: 'off', id-length: 'off', camelcase: 'off', max-params: 'off', no-unused-vars: 'off' */
 
 class HipChatRoomNotification {
   /**
@@ -358,6 +358,7 @@ class HipChatRoomNotification {
    * @memberOf HipChatRoomNotification
    */
   _addCardAttribute(attributeObj) {
+    // eslint-disable-next-line no-prototype-builtins
     if (!this.requestJson.card.hasOwnProperty('attributes')) {
       this.requestJson.card.attributes = [];
     }
