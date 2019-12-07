@@ -93,6 +93,7 @@ class Validator {
   _validateFrom() {
     const maxFromLength = 64;
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('from')) {
       if (this.requestObject.from.length > maxFromLength) {
         this.errors.push(`object.from must be between 0 and ${maxFromLength} characters.`);
@@ -110,6 +111,7 @@ class Validator {
   _validateMessageFormat() {
     const validValues = ['html', 'text'];
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('message_format')) {
       if (validValues.indexOf(this.requestObject.message_format) === notFound) {
         this.errors.push(`object.message_format must be one of: ${validValues.join(', ')}.`);
@@ -127,6 +129,7 @@ class Validator {
   _validateColor() {
     const validValues = ['yellow', 'green', 'red', 'purple', 'gray', 'random'];
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('color')) {
       if (validValues.indexOf(this.requestObject.color) === notFound) {
         this.errors.push(`object.color must be one of: ${validValues.join(', ')}.`);
@@ -144,6 +147,7 @@ class Validator {
   _validateAttachTo() {
     const maxFromLength = 36;
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('attach_to')) {
       if (this.requestObject.attach_to.length > maxFromLength) {
         this.errors.push(`object.attach_to must be between 0 and ${maxFromLength} characters.`);
@@ -159,6 +163,7 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateNotify() {
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('notify')) {
       if (typeof this.requestObject.notify !== 'boolean') {
         this.errors.push('object.notify must be true or false.');
@@ -176,6 +181,7 @@ class Validator {
   _validateMessage() {
     const maxFromLength = 10000;
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('message')) {
       if (this.requestObject.message.length > maxFromLength) {
         this.errors.push(`object.message must be between 0 and ${maxFromLength} characters.`);
@@ -195,7 +201,9 @@ class Validator {
   _validateStyle() {
     const validValues = ['file', 'image', 'application', 'link', 'media'];
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('card')) {
+      // eslint-disable-next-line no-prototype-builtins
       if (this.requestObject.card.hasOwnProperty('style')) {
         if (validValues.indexOf(this.requestObject.card.style) === notFound) {
           this.errors.push(`object.card.style must be one of: ${validValues.join(', ')}.`);
@@ -216,7 +224,9 @@ class Validator {
   _validateFormat() {
     const validValues = ['compact', 'medium'];
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('card')) {
+      // eslint-disable-next-line no-prototype-builtins
       if (this.requestObject.card.hasOwnProperty('format')) {
         if (validValues.indexOf(this.requestObject.card.format) === notFound) {
           this.errors.push(`object.card.format must be one of: ${validValues.join(', ')}.`);
@@ -235,7 +245,9 @@ class Validator {
   _validateTitle() {
     const maxFromLength = 500;
 
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('card')) {
+      // eslint-disable-next-line no-prototype-builtins
       if (this.requestObject.card.hasOwnProperty('title')) {
         if (this.requestObject.card.title.length > maxFromLength) {
           this.errors.push(`object.card.title must be between 0 and ${maxFromLength} characters.`);
@@ -254,8 +266,11 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateThumbnail() {
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('card')) {
+      // eslint-disable-next-line no-prototype-builtins
       if (this.requestObject.card.hasOwnProperty('thumbnail')) {
+        // eslint-disable-next-line no-prototype-builtins
         if (!this.requestObject.card.thumbnail.hasOwnProperty('url')) {
           this.errors.push('object.card.thumbnail.url is a required property.');
         }
@@ -271,8 +286,11 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateActivity() {
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('card')) {
+      // eslint-disable-next-line no-prototype-builtins
       if (this.requestObject.card.hasOwnProperty('activity')) {
+        // eslint-disable-next-line no-prototype-builtins
         if (!this.requestObject.card.activity.hasOwnProperty('html')) {
           this.errors.push('object.card.activity.html is a required property.');
         }
@@ -288,7 +306,9 @@ class Validator {
    * @returns {Undefined} No return
    */
   _validateId() {
+    // eslint-disable-next-line no-prototype-builtins
     if (this.requestObject.hasOwnProperty('card')) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!this.requestObject.card.hasOwnProperty('id')) {
         this.errors.push('object.card.id is a required property.');
       }

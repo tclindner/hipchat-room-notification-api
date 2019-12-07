@@ -11,8 +11,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.message is a required property.');
       });
     });
@@ -27,8 +27,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -42,8 +42,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -57,8 +57,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.from must be between 0 and 64 characters.');
       });
     });
@@ -72,8 +72,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(2);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(2);
         expect(errors[0]).toStrictEqual('object.from must be between 0 and 64 characters.');
         expect(errors[1]).toStrictEqual('object.message is a required property.');
       });
@@ -89,8 +89,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -104,8 +104,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -119,8 +119,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.message_format must be one of: html, text.');
       });
     });
@@ -135,8 +135,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -150,8 +150,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -165,8 +165,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -180,8 +180,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -195,8 +195,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -210,8 +210,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -225,8 +225,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.color must be one of: yellow, green, red, purple, gray, random.');
       });
     });
@@ -241,8 +241,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -256,8 +256,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -271,8 +271,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.attach_to must be between 0 and 36 characters.');
       });
     });
@@ -287,8 +287,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -302,8 +302,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.notify must be true or false.');
       });
     });
@@ -312,11 +312,11 @@ describe('Validator Unit Tests', () => {
       test('the validator response should be true', () => {
         let message = '';
 
-        /* eslint-disable */
+        /* eslint-disable no-plusplus */
         for (let count = 1; count <= 10000; count++) {
-          message = message + 'a';
+          message += 'a';
         }
-        /* eslint-enable */
+        /* eslint-enable no-plusplus */
 
         const requestObject = {
           message
@@ -325,8 +325,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -334,11 +334,11 @@ describe('Validator Unit Tests', () => {
       test('the validator response should be false', () => {
         let message = '';
 
-        /* eslint-disable */
+        /* eslint-disable no-plusplus */
         for (let count = 1; count <= 10001; count++) {
-          message = message + 'a';
+          message += 'a';
         }
-        /* eslint-enable */
+        /* eslint-enable no-plusplus */
 
         const requestObject = {
           message
@@ -347,8 +347,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isBasicValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.message must be between 0 and 10000 characters.');
       });
     });
@@ -369,8 +369,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -384,8 +384,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(3);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(3);
         expect(errors[0]).toStrictEqual('object.card.style is a required property.');
         expect(errors[1]).toStrictEqual('object.card.title is a required property.');
         expect(errors[2]).toStrictEqual('object.card.id is a required property.');
@@ -406,8 +406,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -425,8 +425,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -444,8 +444,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -463,8 +463,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -482,8 +482,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -501,8 +501,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.card.style must be one of: file, image, application, link, media.');
       });
     });
@@ -522,8 +522,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -542,8 +542,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -562,8 +562,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.card.format must be one of: compact, medium.');
       });
     });
@@ -572,11 +572,11 @@ describe('Validator Unit Tests', () => {
       test('the validator response should be true', () => {
         let title = '';
 
-        /* eslint-disable */
+        /* eslint-disable no-plusplus */
         for (let count = 1; count <= 500; count++) {
-          title = title + 'a';
+          title += 'a';
         }
-        /* eslint-enable */
+        /* eslint-enable no-plusplus */
 
         const requestObject = {
           message: 'a',
@@ -590,8 +590,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -599,11 +599,11 @@ describe('Validator Unit Tests', () => {
       test('the validator response should be false', () => {
         let title = '';
 
-        /* eslint-disable */
+        /* eslint-disable no-plusplus */
         for (let count = 1; count <= 501; count++) {
-          title = title + 'a';
+          title += 'a';
         }
-        /* eslint-enable */
+        /* eslint-enable no-plusplus */
 
         const requestObject = {
           message: 'a',
@@ -617,8 +617,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.card.title must be between 0 and 500 characters.');
       });
     });
@@ -638,13 +638,13 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.card.thumbnail.url is a required property.');
       });
     });
 
-    describe('when card thumbnail is provided in the request object with url node', () => {
+    describe('when card thumbnail is provided in the request object with url node - scenario 2', () => {
       test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
@@ -661,8 +661,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
 
@@ -681,13 +681,13 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeFalsy();
-        expect(errors.length).toStrictEqual(1);
+        expect(isValid).toBe(false);
+        expect(errors).toHaveLength(1);
         expect(errors[0]).toStrictEqual('object.card.activity.html is a required property.');
       });
     });
 
-    describe('when card activity is provided in the request object with html node', () => {
+    describe('when card activity is provided in the request object with html node - scenario 2', () => {
       test('the validator response should be true', () => {
         const requestObject = {
           message: 'a',
@@ -704,8 +704,8 @@ describe('Validator Unit Tests', () => {
         const isValid = validator.isCardValid(requestObject);
         const errors = validator.getErrors();
 
-        expect(isValid).toBeTruthy();
-        expect(errors.length).toStrictEqual(0);
+        expect(isValid).toBe(true);
+        expect(errors).toHaveLength(0);
       });
     });
   });
