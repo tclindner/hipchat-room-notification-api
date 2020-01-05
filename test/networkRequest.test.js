@@ -38,6 +38,7 @@ describe('HipChatRoomNotification Network Unit Tests', () => {
     jest.spyOn(request, 'post');
     request.post.mockReturnValue(null, {statusCode: 400}, {});
 
+    // eslint-disable-next-line jest/valid-expect
     await expect(notification.send());
   });
 
