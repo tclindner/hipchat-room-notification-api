@@ -4,7 +4,7 @@
 
 [![license](https://img.shields.io/github/license/tclindner/hipchat-room-notification-api.svg?maxAge=2592000&style=flat-square)](https://github.com/tclindner/hipchat-room-notification-api/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/hipchat-room-notification-api.svg?maxAge=2592000?style=flat-square)](https://www.npmjs.com/package/hipchat-room-notification-api)
-[![CircleCI](https://circleci.com/gh/tclindner/hipchat-room-notification-api.svg?style=svg&circle-token=84359b572224713bf3ad7aeff27bece303339ad6)](https://circleci.com/gh/tclindner/hipchat-room-notification-api)
+![ci](https://github.com/tclindner/hipchat-room-notification-api/workflows/ci/badge.svg?branch=master)
 [![Dependency Status](https://david-dm.org/tclindner/hipchat-room-notification-api.svg?style=flat-square)](https://david-dm.org/tclindner/hipchat-room-notification-api)
 [![devDependency Status](https://david-dm.org/tclindner/hipchat-room-notification-api/dev-status.svg?style=flat-square)](https://david-dm.org/tclindner/hipchat-room-notification-api#info=devDependencies)
 
